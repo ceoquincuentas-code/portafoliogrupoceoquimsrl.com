@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semilla de Mostaza - Grupo Ceoquim SRL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header/Navegación */
+        header {
+            background: white;
+            padding: 20px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #d4a017 0%, #f4c430 50%, #ffd700 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #d4a017;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(212,160,23,0.05) 0%, rgba(255,215,0,0.05) 100%);
+            padding: 80px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .hero::before {
+            width: 400px;
+            height: 400px;
+            background: #ffd700;
+            top: -200px;
+            left: -100px;
+        }
+
+        .hero::after {
+            width: 500px;
+            height: 500px;
+            background: #d4a017;
+            bottom: -250px;
+            right: -150px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .hero h1 .destacado {
+            color: #d4a017;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .producto-imagen-hero {
+            width: 100%;
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .producto-imagen-hero img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Secciones de Contenido */
+        .seccion {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 50px;
+        }
+
+        .seccion-alt {
+            background: #f8f9fa;
+        }
+
+        .seccion h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .seccion h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #d4a017, #ffd700);
+            border-radius: 2px;
+        }
+
+        .seccion h3 {
+            font-size: 1.8em;
+            color: #d4a017;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .seccion p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Grid de características */
+        .caracteristicas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .caracteristica-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .caracteristica-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .caracteristica-card h4 {
+            color: #d4a017;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caracteristica-card p {
+            color: #666;
+            font-size: 1em;
+        }
+
+        /* Lista con iconos */
+        .lista-beneficios {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .lista-beneficios li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.1em;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lista-beneficios li:last-child {
+            border-bottom: none;
+        }
+
+        .lista-beneficios li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #d4a017;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        /* Etiquetas */
+        .etiquetas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .etiqueta {
+            background: linear-gradient(135deg, #d4a017, #f4c430);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #d4a017, #ffd700);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+            padding-left: 50px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #d4a017;
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 0;
+            box-shadow: 0 0 0 4px #d4a017;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content h4 {
+            color: #d4a017;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #666;
+            font-size: 0.95em;
+            margin: 0;
+            text-align: left;
+        }
+
+        /* Botones CTA */
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #d4a017;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #b8860b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212,160,23,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #d4a017;
+            border: 2px solid #d4a017;
+        }
+
+        .btn-secondary:hover {
+            background: #d4a017;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 50px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #bbb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .seccion {
+                padding: 50px 30px;
+            }
+
+            .caracteristicas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 60px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-item::after {
+                left: 10px !important;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+    
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Semilla de <span class="destacado">Mostaza</span></h1>
+            <p>Condimento milenario de sabor intenso y picante, ingrediente esencial en la gastronomía mundial</p>
+            
+            <div class="producto-imagen-hero">
+                <img src="https://images.unsplash.com/photo-1599909991540-b427a1c8f01c?w=500&h=500&fit=crop" alt="Semillas de Mostaza">
+            </div>
+
+            <div class="etiquetas">
+                <span class="etiqueta">✓ Grado Alimenticio</span>
+                <span class="etiqueta">✓ Alta Pureza</span>
+                <span class="etiqueta">✓ 25 KG</span>
+                <span class="etiqueta">✓ Importación Directa</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Qué es la Mostaza -->
+    <section class="seccion">
+        <h2>¿Qué es la Semilla de Mostaza?</h2>
+        <p>La semilla de mostaza es uno de los condimentos más antiguos y versátiles de la historia culinaria mundial. Proviene de plantas del género Brassica, específicamente Brassica nigra (mostaza negra), Brassica juncea (mostaza parda) y Sinapis alba (mostaza blanca o amarilla). Estas pequeñas semillas esféricas han sido utilizadas durante más de 5,000 años tanto en la cocina como en la medicina tradicional.</p>
+        
+        <p>Las semillas de mostaza son ricas en glucosinolatos, compuestos que al ser triturados o molidos en presencia de agua liberan isotiocianatos, responsables del característico sabor picante y acre de la mostaza. Su intensidad varía según el tipo: la mostaza negra es la más picante, seguida de la parda, mientras que la amarilla tiene un sabor más suave. Más allá de su uso como condimento, las semillas de mostaza son fuente de aceites esenciales, proteínas, fibra y minerales, siendo un ingrediente fundamental en la industria alimentaria global.</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🌾 Variedades</h4>
+                <p>Ofrecemos mostaza amarilla (Sinapis alba), parda (Brassica juncea) y negra (Brassica nigra) según necesidades específicas</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🎯 Características</h4>
+                <p>Semillas esféricas de 1-2mm de diámetro con sabor picante característico y propiedades emulsificantes naturales</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>⚖️ Presentación</h4>
+                <p>Sacos de 25 kilogramos de semillas enteras, limpias y seleccionadas, listas para uso industrial</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Historia -->
+    <section class="seccion seccion-alt">
+        <h2>La Historia de la Semilla de Mostaza</h2>
+        <p>La mostaza tiene una historia fascinante que se entrelaza con el desarrollo de la civilización humana, desde las antiguas culturas orientales hasta convertirse en un condimento global indispensable.</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>3000 a.C. - Orígenes Antiguos</h4>
+                    <p>Evidencias arqueológicas muestran que la mostaza se cultivaba en la región del Valle del Indo (actual Pakistán e India). Los antiguos sumerios ya molían semillas de mostaza con vino agrio para crear pastas condimentadas. En China, se documenta su uso tanto culinario como medicinal.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1500 a.C. - Egipto y Mesopotamia</h4>
+                    <p>Los faraones egipcios incluían semillas de mostaza en las tumbas como provisión para el más allá. En Mesopotamia, las recetas cuneiformes mencionan la mostaza como ingrediente en conservas y adobos. Se convertía en un símbolo de abundancia y prosperidad.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>400 a.C. - Grecia y Roma</h4>
+                    <p>Hipócrates recomendaba cataplasmas de mostaza con fines medicinales. Los romanos fueron pioneros en crear "mustum ardens" (mosto ardiente), mezclando semillas molidas con mosto de uva, creando la primera versión de la mostaza preparada moderna. La llevaron por todo el Imperio Romano.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Siglo IX - Edad Media Europea</h4>
+                    <p>Los monasterios franceses perfeccionan la preparación de mostaza. Carlomagno ordenó el cultivo extensivo de mostaza en los jardines imperiales. Se establece como condimento esencial en la cocina medieval europea, preservando carnes y añadiendo sabor a sopas.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1720 - Revolución de Dijon</h4>
+                    <p>En Dijon, Francia, la familia Naigeon revoluciona la mostaza al sustituir el vinagre por verjus (jugo de uva verde), creando la famosa mostaza de Dijon de sabor más suave y refinado. Dijon se convierte en la capital mundial de la mostaza.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1866 - Mostaza Americana</h4>
+                    <p>Jeremiah Colman en Inglaterra desarrolla la mostaza en polvo seca. En Estados Unidos, George T. French crea la mostaza amarilla brillante con cúrcuma, que se convierte en el acompañamiento icónico de hot dogs y hamburguesas en 1904 durante la Feria Mundial de St. Louis.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Actualidad - Producción Global</h4>
+                    <p>Canadá, Nepal, Rusia y Myanmar lideran la producción mundial con más de 700,000 toneladas anuales. La mostaza se usa en más de 40 variedades de productos, desde condimentos gourmet hasta aplicaciones industriales en embutidos, aderezos y conservas. Es el tercer condimento más consumido del mundo después de la sal y la pimienta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Cómo llegó a nosotros -->
+    <section class="seccion">
+        <h2>Cómo Llegó la Mostaza a Grupo Ceoquim SRL</h2>
+        <p>En Grupo Ceoquim SRL, nuestra relación con la semilla de mostaza comenzó hace más de 12 años, cuando identificamos una oportunidad en el creciente sector de procesamiento de carnes y elaboración de condimentos en Bolivia.</p>
+
+        <h3>Nuestro Camino hacia la Mostaza de Calidad</h3>
+        <p>Todo comenzó en 2012, cuando uno de nuestros principales clientes, un fabricante de embutidos de La Paz, nos consultó sobre la posibilidad de importar semillas de mostaza de alta calidad para mejorar sus formulaciones. En ese momento, los proveedores locales ofrecían producto de calidad irregular con presencia de impurezas.</p>
+
+        <p>Iniciamos una investigación exhaustiva del mercado global de mostaza, visitando ferias internacionales como SIAL en París y Anuga en Alemania. Establecimos contacto con productores en Canadá (líder mundial con el 35% de la producción), India (segundo productor), y Myanmar. Tras evaluar muestras de múltiples orígenes, seleccionamos proveedores en Canadá y India que cumplen los más altos estándares de calidad.</p>
+
+        <h3>Selección de Nuestros Proveedores</h3>
+        <p>Trabajamos con dos fuentes principales según la variedad y aplicación:</p>
+
+        <ul class="lista-beneficios">
+            <li>Mostaza Amarilla: Importada de Saskatchewan, Canadá, la región productora de mostaza más importante del mundo</li>
+            <li>Mostaza Parda y Negra: Proveniente de Rajasthan, India, conocida por la intensidad y calidad de sus semillas</li>
+            <li>Certificación de análisis con cada lote que verifica pureza, contenido de aceite esencial y ausencia de contaminantes</li>
+            <li>Cumplimiento con estándares internacionales de inocuidad alimentaria (HACCP, ISO 22000)</li>
+            <li>Limpieza mecánica triple que elimina piedras, tierra, semillas extrañas y materiales inertes</li>
+            <li>Trazabilidad completa desde el campo hasta el puerto de destino</li>
+        </ul>
+
+        <h3>El Proceso de Importación</h3>
+        <p>Cada embarque de semillas de mostaza sigue un protocolo riguroso:</p>
+
+        <ul class="lista-beneficios">
+            <li>Inspección pre-embarque en origen con verificación de humedad (máximo 10%), pureza (mínimo 98%) y germinación</li>
+            <li>Certificado fitosanitario que garantiza que las semillas están libres de plagas y enfermedades</li>
+            <li>Análisis de laboratorio que verifica contenido de aceite volátil (mínimo 0.7%), proteína y perfil de glucosinolatos</li>
+            <li>Transporte marítimo en contenedores secos ventilados con control de humedad</li>
+            <li>Inspección en puerto boliviano por SENASAG con verificación de documentación y muestreo</li>
+            <li>Almacenamiento en bodega con control de temperatura y humedad para preservar frescura</li>
+            <li>Re-análisis en laboratorio local antes de la distribución a clientes</li>
+        </ul>
+
+        <h3>Por Qué Elegimos Estos Orígenes</h3>
+        <p>Canadá e India ofrecen ventajas complementarias que nos permiten atender todas las necesidades de nuestros clientes:</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🍁 Canadá - Mostaza Amarilla</h4>
+                <p>Clima ideal de las praderas canadienses produce semillas uniformes de color brillante, tamaño consistente y bajo contenido de pigmentos oscuros, perfecta para mostaza preparada de calidad premium.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🇮🇳 India - Mostaza Parda/Negra</h4>
+                <p>Condiciones climáticas de Rajasthan producen semillas con alto contenido de aceite volátil (hasta 1.2%) y glucosinolatos, ideales para aplicaciones que requieren máximo picor y sabor intenso.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🔬 Tecnología de Limpieza</h4>
+                <p>Ambos orígenes utilizan equipos de limpieza por densidad, tamizado y separación óptica que garantizan pureza superior al 99%.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>✅ Certificaciones</h4>
+                <p>Cumplimiento con normativas canadienses e indias de seguridad alimentaria, además de certificaciones orgánicas disponibles bajo pedido.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>💰 Competitividad</h4>
+                <p>Compras directas a cooperativas de agricultores y procesadores establecidos nos permiten ofrecer los mejores precios del mercado boliviano.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🤝 Consistencia</h4>
+                <p>Más de una década de relación comercial garantiza suministro estable durante todo el año, sin interrupciones por estacionalidad.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Propiedades -->
+    <section class="seccion seccion-alt">
+        <h2>Propiedades y Características Técnicas</h2>
+        <p>Nuestras semillas de mostaza cumplen con especificaciones técnicas que superan los estándares internacionales:</p>
+
+        <h3>Características Físicas y Químicas</h3>
+        <ul class="lista-beneficios">
+            <li>Pureza: Mínimo 98% (libre de semillas extrañas, piedras, tierra y materiales inertes)</li>
+            <li>Humedad: Máximo 10% (conservación óptima y prevención de moho)</li>
+            <li>Contenido de aceite volátil: 0.7% - 1.2% dependiendo de la variedad</li>
+            <li>Germinación: Mínimo 85% (indicador de frescura y vitalidad)</li>
+            <li>Proteína: 25-30% base seca</li>
+            <li>Fibra: 10-15%</li>
+            <li>Cenizas: 4-5%</li>
+            <li>Tamaño de grano: 1.0-2.5 mm de diámetro según variedad</li>
+            <li>Color: Amarillo brillante (S. alba), marrón rojizo (B. juncea), negro púrpura (B. nigra)</li>
+            <li>Aflatoxinas: Máximo 5 ppb (partes por billón)</li>
+            <li>Metales pesados (como Pb): Máximo 2 mg/kg</li>
+        </ul>
+
+        <h3>Propiedades Organolépticas</h3>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>👅 Sabor</h4>
+                <p>Picante característico que se desarrolla al moler y mezclar con líquido. Intensidad variable: mostaza amarilla (suave), parda (medio-fuerte), negra (muy picante)</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>👃 Aroma</h4>
+                <p>Ligeramente acre en semilla entera, liberando aroma pungente y picante al triturar debido a la liberación de isotiocianatos volátiles</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🧪 Compuestos Activos</h4>
+                <p>Glucosinolatos (sinigrina, sinalbina), enzima mirosinasa, ácidos grasos omega-3, minerales (calcio, magnesio, fósforo, potasio)</p>
+            </div>
+        </div>
+
+        <h3>Beneficios Nutricionales y Funcionales</h3>
+        <ul class="lista-beneficios">
+            <li>Rica en proteínas vegetales de alta calidad (25-30%)</li>
+            <li>Excelente fuente de ácidos grasos omega-3 y omega-6 en proporción equilibrada</li>
+            <li>Alto contenido de fibra dietética que favorece la digestión</li>
+            <li>Minerales esenciales: selenio, magnesio, fósforo, calcio, hierro</li>
+            <li>Propiedades antimicrobianas naturales que ayudan en la conservación de alimentos</li>
+            <li>Agente emulsificante natural por su contenido de mucílago (especialmente mostaza amarilla)</li>
+            <li>Compuestos antioxidantes (glucosinolatos) con propiedades anticancerígenas estudiadas</li>
+            <li>Estimula la producción de enzimas digestivas y mejora la absorción de nutrientes</li>
+        </ul>
+    </section>
+
+    <!-- Sección: Usos -->
+    <section class="seccion">
+        <h2>Aplicaciones y Usos Industriales</h2>
+        <p>La semilla de mostaza es uno de los ingredientes más versátiles en la industria alimentaria, con aplicaciones que van desde productos cárnicos hasta conservas y aderezos.</p>
+
+        <h3>Industria Cárnica y Embutidos</h3>
+        <p>La mostaza es fundamental en el procesamiento de carnes por sus propiedades emulsificantes y conservantes:</p>
+        <ul class="lista-beneficios">
+            <li>Salchichas y frankfurters: la mostaza molida actúa como emulsificante natural, mejorando la textura y retención de humedad (0.5-2%)</li>
+            <li>Mortadela y jamones: previene la rancidez por sus propiedades antioxidantes (0.3-1%)</li>
+            <li>Chorizos y longanizas: aporta sabor característico y ayuda en la conservación (0.5-1.5%)</li>
+            <li>Hamburguesas: mejora la jugosidad y añade un toque de sabor picante sutil (0.2-0.8%)</li>
+            <li>Productos curados: facilita la penetración de la salmuera y realza el sabor (0.3-1%)</li>
+        </ul>
+
+        <h3>Mostaza Preparada y Condimentos</h3>
+        <p>El uso más tradicional de la semilla de mostaza:</p>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🥫 Mostaza Dijon

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semilla de Comino - Grupo Ceoquim SRL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header/Navegación */
+        header {
+            background: white;
+            padding: 20px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4a7c59 0%, #6b8e23 50%, #8fbc8f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #6b8e23;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(75,124,89,0.05) 0%, rgba(107,142,35,0.05) 100%);
+            padding: 80px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .hero::before {
+            width: 400px;
+            height: 400px;
+            background: #8fbc8f;
+            top: -200px;
+            left: -100px;
+        }
+
+        .hero::after {
+            width: 500px;
+            height: 500px;
+            background: #6b8e23;
+            bottom: -250px;
+            right: -150px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .hero h1 .destacado {
+            color: #6b8e23;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .producto-imagen-hero {
+            width: 100%;
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .producto-imagen-hero img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Secciones de Contenido */
+        .seccion {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 50px;
+        }
+
+        .seccion-alt {
+            background: #f8f9fa;
+        }
+
+        .seccion h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .seccion h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #6b8e23, #8fbc8f);
+            border-radius: 2px;
+        }
+
+        .seccion h3 {
+            font-size: 1.8em;
+            color: #6b8e23;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .seccion p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Grid de características */
+        .caracteristicas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .caracteristica-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .caracteristica-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .caracteristica-card h4 {
+            color: #6b8e23;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caracteristica-card p {
+            color: #666;
+            font-size: 1em;
+        }
+
+        /* Lista con iconos */
+        .lista-beneficios {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .lista-beneficios li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.1em;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lista-beneficios li:last-child {
+            border-bottom: none;
+        }
+
+        .lista-beneficios li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #6b8e23;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        /* Etiquetas */
+        .etiquetas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .etiqueta {
+            background: linear-gradient(135deg, #6b8e23, #8fbc8f);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #6b8e23, #8fbc8f);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+            padding-left: 50px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #6b8e23;
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 0;
+            box-shadow: 0 0 0 4px #6b8e23;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content h4 {
+            color: #6b8e23;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #666;
+            font-size: 0.95em;
+            margin: 0;
+            text-align: left;
+        }
+
+        /* Botones CTA */
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #6b8e23;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #556b2f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(107,142,35,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #6b8e23;
+            border: 2px solid #6b8e23;
+        }
+
+        .btn-secondary:hover {
+            background: #6b8e23;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 50px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #bbb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .seccion {
+                padding: 50px 30px;
+            }
+
+            .caracteristicas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 60px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-item::after {
+                left: 10px !important;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+    
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Semilla de <span class="destacado">Comino</span></h1>
+            <p>Especia aromática de sabor intenso y terroso, esencial en cocinas de todo el mundo</p>
+            
+            <div class="producto-imagen-hero">
+                <img src="https://images.unsplash.com/photo-1596040033229-a0b4b5b6d6d0?w=500&h=500&fit=crop" alt="Semillas de Comino">
+            </div>
+
+            <div class="etiquetas">
+                <span class="etiqueta">✓ Grado Alimenticio</span>
+                <span class="etiqueta">✓ Alta Pureza</span>
+                <span class="etiqueta">✓ 25 KG</span>
+                <span class="etiqueta">✓ Importación Directa</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Qué es el Comino -->
+    <section class="seccion">
+        <h2>¿Qué es la Semilla de Comino?</h2>
+        <p>El comino es una de las especias más antiguas y utilizadas en el mundo, proveniente de la planta Cuminum cyminum, miembro de la familia Apiaceae. Sus semillas pequeñas, alargadas y estriadas han sido valoradas durante más de 4,000 años por su aroma distintivo y propiedades tanto culinarias como medicinales.</p>
+        
+        <p>Las semillas de comino tienen un sabor cálido, terroso y ligeramente amargo con notas cítricas. Su aceite esencial contiene cuminaldehído, responsable de su aroma característico. Rico en hierro, manganeso, calcio y antioxidantes, el comino es fundamental en las cocinas mediterránea, india, mexicana, del Medio Oriente y del norte de África. Más allá de su uso culinario, el comino ha sido empleado tradicionalmente en medicina ayurvédica y herbolaria para mejorar la digestión y fortalecer el sistema inmunológico.</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🌿 Origen Botánico</h4>
+                <p>Cuminum cyminum, planta herbácea anual de la familia Apiaceae, cultivada principalmente en climas cálidos y secos</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🎯 Características</h4>
+                <p>Semillas elongadas de 3-6mm de longitud, color marrón amarillento con estrías longitudinales y aroma intenso y penetrante</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>⚖️ Presentación</h4>
+                <p>Sacos de 25 kilogramos de semillas enteras, limpias y seleccionadas, listas para uso industrial o molienda</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Historia -->
+    <section class="seccion seccion-alt">
+        <h2>La Historia del Comino</h2>
+        <p>El comino tiene una historia milenaria que abarca desde las civilizaciones antiguas del Mediterráneo Oriental hasta convertirse en una especia global indispensable.</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>2000 a.C. - Antiguo Egipto</h4>
+                    <p>Evidencias arqueológicas muestran que el comino se utilizaba en el proceso de momificación y como ofrenda funeraria. Los egipcios lo valoraban tanto como condimento culinario como por sus propiedades medicinales y conservantes.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1500 a.C. - Mesopotamia y Levante</h4>
+                    <p>Los sumerios y babilonios cultivaban comino extensivamente. Referencias en tablillas cuneiformes mencionan su uso en panes, guisos y como medicina. El comino era tan valioso que se utilizaba como moneda de intercambio.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>500 a.C. - Grecia y Roma Antigua</h4>
+                    <p>Hipócrates y Dioscórides recomendaban el comino para problemas digestivos. Los romanos lo usaban abundantemente en su cocina y como sustituto de la pimienta negra, más costosa. Plinio el Viejo lo menciona como la especia más común en Roma.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Siglo VII - Expansión Islámica</h4>
+                    <p>El comino se expande por todo el mundo islámico, desde España hasta India. Se convierte en ingrediente esencial en las cocinas árabe, persa y mogol. El Corán menciona el comino como una de las especias beneficiosas.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Siglo XVI - América Colonial</h4>
+                    <p>Los conquistadores españoles introducen el comino en América. Se integra rápidamente en la cocina mexicana, donde se convierte en ingrediente fundamental de mezclas como el chile en polvo y el adobo tradicional.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Siglo XIX - India Colonial</h4>
+                    <p>India se convierte en el principal productor mundial de comino. La especia es fundamental en prácticamente todas las mezclas de curry, garam masala y panch phoron. El comercio británico expande su popularidad global.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Actualidad - Producción Global</h4>
+                    <p>India, Irán, Siria, Turquía y China lideran la producción mundial con más de 600,000 toneladas anuales. El comino es la segunda especia más popular después de la pimienta negra, presente en cocinas de más de 150 países.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Cómo llegó a nosotros -->
+    <section class="seccion">
+        <h2>Cómo Llegó el Comino a Grupo Ceoquim SRL</h2>
+        <p>En Grupo Ceoquim SRL, nuestra relación con el comino comenzó hace más de 15 años, cuando identificamos la creciente demanda de esta especia esencial en la industria alimentaria boliviana.</p>
+
+        <h3>Nuestro Camino hacia el Comino de Calidad</h3>
+        <p>Todo comenzó en 2009, cuando restaurantes y fabricantes de alimentos étnicos en La Paz nos consultaron sobre la posibilidad de importar comino de calidad superior. En ese momento, el mercado local ofrecía producto con presencia de tallos, semillas rotas y bajo contenido de aceite esencial.</p>
+
+        <p>Iniciamos una investigación exhaustiva del mercado global de comino, estableciendo contacto con productores en India (Gujarat y Rajasthan), Irán, Siria y Turquía. Tras evaluar muestras de múltiples orígenes y realizar pruebas de laboratorio, seleccionamos proveedores en India e Irán que cumplen los más altos estándares de calidad internacional.</p>
+
+        <h3>Selección de Nuestros Proveedores</h3>
+        <p>Trabajamos con dos fuentes principales según disponibilidad estacional y especificaciones del cliente:</p>
+
+        <ul class="lista-beneficios">
+            <li>Comino Indio: Proveniente de Gujarat y Rajasthan, regiones que producen el 70% del comino mundial</li>
+            <li>Comino Iraní: De las provincias de Khorasan y Kerman, conocido por su aroma más intenso y contenido superior de aceites esenciales</li>
+            <li>Certificación de análisis con cada lote verificando pureza, contenido de aceite esencial (mínimo 2.5%) y perfil aromático</li>
+            <li>Cumplimiento con estándares internacionales ISO 927 para comino entero</li>
+            <li>Limpieza mecánica que elimina tallos, hojas, tierra y semillas extrañas</li>
+            <li>Trazabilidad completa desde cooperativas agrícolas hasta puerto de destino</li>
+        </ul>
+
+        <h3>El Proceso de Importación</h3>
+        <p>Cada embarque de semillas de comino sigue un protocolo riguroso:</p>
+
+        <ul class="lista-beneficios">
+            <li>Inspección pre-embarque en origen verificando humedad (máximo 10%), pureza (mínimo 98%) y color uniforme</li>
+            <li>Certificado fitosanitario garantizando ausencia de plagas como gorgojo del comino (Bruchus spp.)</li>
+            <li>Análisis de laboratorio verificando contenido de aceite volátil, cuminaldehído y perfil de sabor</li>
+            <li>Transporte marítimo en contenedores secos con control de temperatura para preservar aceites esenciales</li>
+            <li>Inspección en puerto boliviano por SENASAG con verificación documental y muestreo</li>
+            <li>Almacenamiento en bodega climatizada con temperatura entre 15-20°C y humedad relativa controlada</li>
+            <li>Re-análisis en laboratorio local antes de distribución, verificando frescura aromática</li>
+        </ul>
+
+        <h3>Por Qué Elegimos Estos Orígenes</h3>
+        <p>India e Irán ofrecen ventajas complementarias que nos permiten atender todas las necesidades de nuestros clientes:</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🇮🇳 India - Volumen y Consistencia</h4>
+                <p>Clima monzónico de Gujarat produce semillas de tamaño uniforme (3-5mm), color marrón amarillento característico y sabor balanceado, ideal para uso industrial a gran escala.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🇮🇷 Irán - Calidad Premium</h4>
+                <p>Condiciones áridas de mesetas iraníes producen semillas con mayor concentración de aceite esencial (hasta 4.5%) y aroma más pronunciado, perfectas para productos gourmet.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🔬 Tecnología de Limpieza</h4>
+                <p>Ambos orígenes utilizan equipos de separación por gravedad, tamizado múltiple y selección óptica que garantizan pureza superior al 99%.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>✅ Certificaciones</h4>
+                <p>Cumplimiento con normativas FSSAI (India) y ISIRI (Irán) de seguridad alimentaria, además de certificaciones orgánicas disponibles bajo pedido.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>💰 Competitividad</h4>
+                <p>Compras directas a cooperativas agrícolas establecidas nos permiten ofrecer precios competitivos sin intermediarios innecesarios.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🤝 Suministro Estable</h4>
+                <p>Más de 15 años de relación comercial garantizan suministro continuo durante todo el año, aprovechando diferentes ciclos de cosecha.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Propiedades -->
+    <section class="seccion seccion-alt">
+        <h2>Propiedades y Características Técnicas</h2>
+        <p>Nuestras semillas de comino cumplen con especificaciones técnicas que superan los estándares internacionales ISO 927:</p>
+
+        <h3>Características Físicas y Químicas</h3>
+        <ul class="lista-beneficios">
+            <li>Pureza: Mínimo 98% (libre de tallos, hojas, tierra y semillas extrañas)</li>
+            <li>Humedad: Máximo 10% (conservación óptima de aceites esenciales)</li>
+            <li>Contenido de aceite volátil: 2.5% - 4.5% dependiendo del origen</li>
+            <li>Cuminaldehído: 25-35% del aceite esencial (compuesto aromático principal)</li>
+            <li>Proteína: 18-20% base seca</li>
+            <li>Fibra: 10-12%</li>
+            <li>Cenizas: 7-9%</li>
+            <li>Tamaño de grano: 3-6 mm de longitud, 1-1.5 mm de ancho</li>
+            <li>Color: Marrón amarillento uniforme con estrías longitudinales</li>
+            <li>Aflatoxinas totales: Máximo 10 ppb según normativa UE</li>
+            <li>Materia extraña: Máximo 0.5%</li>
+        </ul>
+
+        <h3>Propiedades Organolépticas</h3>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>👅 Sabor</h4>
+                <p>Cálido, terroso y ligeramente amargo con notas cítricas. El sabor se intensifica al tostar las semillas antes de molerlas</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>👃 Aroma</h4>
+                <p>Intenso, penetrante y distintivo debido al cuminaldehído. Aroma que evoca tierra, nuez y un toque dulzón cuando está fresco</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🧪 Compuestos Activos</h4>
+                <p>Aceites esenciales (cuminaldehído, p-cimeno, γ-terpineno), flavonoides, timol, hierro, manganeso, calcio, fósforo</p>
+            </div>
+        </div>
+
+        <h3>Beneficios Nutricionales y Funcionales</h3>
+        <ul class="lista-beneficios">
+            <li>Excelente fuente de hierro (66 mg por 100g) que ayuda a prevenir anemia</li>
+            <li>Rico en antioxidantes (apigenina, luteolina) que combaten radicales libres</li>
+            <li>Alto contenido de manganeso y calcio para salud ósea</li>
+            <li>Propiedades carminativas que ayudan a reducir gases y mejorar digestión</li>
+            <li>Estimula la secreción de enzimas pancreáticas y biliares</li>
+            <li>Propiedades antimicrobianas contra bacterias y hongos patógenos</li>
+            <li>Compuestos que pueden ayudar a regular niveles de glucosa en sangre</li>
+            <li>Efectos antiinflamatorios naturales estudiados en investigaciones recientes</li>
+        </ul>
+    </section>
+
+    <!-- Sección: Usos -->
+    <section class="seccion">
+        <h2>Aplicaciones y Usos Industriales</h2>
+        <p>La semilla de comino es una de las especias más versátiles en la industria alimentaria global, con aplicaciones en prácticamente todas las categorías de productos.</p>
+
+        <h3>Mezclas de Especias y Condimentos</h3>
+        <p>El comino es ingrediente fundamental en mezclas de especias de todo el mundo:</p>
+        <ul class="lista-beneficios">
+            <li>Curry en polvo: componente esencial junto con cúrcuma, cilantro y chiles (15-25%)</li>
+            <li>Garam masala: mezcla india aromática con comino tostado y molido (20-30%)</li>
+            <li>Chile en polvo: mezcla mexicana con comino, chile, ajo y orégano (10-20%)</li>
+            <li>Baharat: mezcla árabe de especias con comino como nota terrosa (15-25%)</li>
+            <li>Ras el hanout: mezcla marroquí compleja de más de 20 especias (5-10%)</li>
+            <li>Adobos y sazonadores para carnes: realza sabor de res, cordero y pollo (2-8%)</li>
+        </ul>
+
+        <h3>Industria Cárnica</h3>
+        <p>El comino aporta sabor distintivo y propiedades funcionales en productos cárnicos:</p>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🌭 Embutidos y Salchichas</h4>
+                <p>Chorizos, longanizas y salchichas especiadas utilizan comino molido para aroma característico (0.3-1.5%). Sus propiedades antimicrobianas ayudan en la conservación.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🥩 Productos Curados</h4>
+                <p>Jamones, cecinas y carnes secas incorporan comino en sus mezclas de especias para enmascarar sabores de oxidación (0.2-0.8%).</p>
+            </div>
+            <div class="

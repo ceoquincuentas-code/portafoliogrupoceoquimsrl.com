@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endulzante de Estevia - Grupo Ceoquim SRL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header/Navegación */
+        header {
+            background: white;
+            padding: 20px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4caf50 0%, #81c784 50%, #aed581 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #4caf50;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(76,175,80,0.05) 0%, rgba(174,213,129,0.05) 100%);
+            padding: 80px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .hero::before {
+            width: 400px;
+            height: 400px;
+            background: #aed581;
+            top: -200px;
+            left: -100px;
+        }
+
+        .hero::after {
+            width: 500px;
+            height: 500px;
+            background: #4caf50;
+            bottom: -250px;
+            right: -150px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .hero h1 .destacado {
+            color: #4caf50;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .producto-imagen-hero {
+            width: 100%;
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .producto-imagen-hero img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Secciones de Contenido */
+        .seccion {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 50px;
+        }
+
+        .seccion-alt {
+            background: #f8f9fa;
+        }
+
+        .seccion h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .seccion h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #4caf50, #aed581);
+            border-radius: 2px;
+        }
+
+        .seccion h3 {
+            font-size: 1.8em;
+            color: #4caf50;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .seccion p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Grid de características */
+        .caracteristicas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .caracteristica-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .caracteristica-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .caracteristica-card h4 {
+            color: #4caf50;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caracteristica-card p {
+            color: #666;
+            font-size: 1em;
+        }
+
+        /* Lista con iconos */
+        .lista-beneficios {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .lista-beneficios li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.1em;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lista-beneficios li:last-child {
+            border-bottom: none;
+        }
+
+        .lista-beneficios li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        /* Etiquetas */
+        .etiquetas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .etiqueta {
+            background: linear-gradient(135deg, #4caf50, #81c784);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #4caf50, #aed581);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+            padding-left: 50px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #4caf50;
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 0;
+            box-shadow: 0 0 0 4px #4caf50;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content h4 {
+            color: #4caf50;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #666;
+            font-size: 0.95em;
+            margin: 0;
+            text-align: left;
+        }
+
+        /* Botones CTA */
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #388e3c;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(76,175,80,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #4caf50;
+            border: 2px solid #4caf50;
+        }
+
+        .btn-secondary:hover {
+            background: #4caf50;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 50px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #bbb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .seccion {
+                padding: 50px 30px;
+            }
+
+            .caracteristicas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 60px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-item::after {
+                left: 10px !important;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+    
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Endulzante de <span class="destacado">Estevia</span></h1>
+            <p>Edulcorante natural de origen vegetal, cero calorías y hasta 300 veces más dulce que el azúcar</p>
+            
+            <div class="producto-imagen-hero">
+                <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=500&h=500&fit=crop" alt="Endulzante de Estevia">
+            </div>
+
+            <div class="etiquetas">
+                <span class="etiqueta">✓ 100% Natural</span>
+                <span class="etiqueta">✓ Cero Calorías</span>
+                <span class="etiqueta">✓ 25 KG</span>
+                <span class="etiqueta">✓ Certificado Orgánico</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Qué es la Estevia -->
+    <section class="seccion">
+        <h2>¿Qué es el Endulzante de Estevia?</h2>
+        <p>La estevia es un edulcorante natural revolucionario extraído de las hojas de la planta Stevia rebaudiana Bertoni, originaria de Paraguay y Brasil. Este endulzante ha transformado la industria de alimentos y bebidas al ofrecer una alternativa saludable, natural y sin calorías al azúcar tradicional.</p>
+        
+        <p>Los compuestos responsables del dulzor de la estevia son los glucósidos de esteviol, principalmente el esteviósido y el rebaudiósido A, que proporcionan un poder edulcorante entre 200 y 300 veces superior al del azúcar común, sin aportar calorías ni afectar los niveles de glucosa en sangre. La estevia representa el futuro de la endulzación saludable, siendo ideal para diabéticos, personas que buscan perder peso y consumidores conscientes de su salud.</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🌿 Origen Natural</h4>
+                <p>Extraída de las hojas de Stevia rebaudiana, una planta medicinal utilizada ancestralmente por culturas indígenas</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🎯 Poder Edulcorante</h4>
+                <p>200-300 veces más dulce que el azúcar, permitiendo reducir significativamente las cantidades utilizadas</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>⚖️ Presentación</h4>
+                <p>Sacos de 25 kilogramos de extracto puro en polvo, ideal para aplicaciones industriales</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Historia -->
+    <section class="seccion seccion-alt">
+        <h2>La Historia de la Estevia</h2>
+        <p>La estevia tiene una fascinante historia que abarca siglos, desde su uso ancestral hasta convertirse en uno de los edulcorantes naturales más importantes del mundo moderno.</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Siglos Precolombinos - Uso Ancestral</h4>
+                    <p>Los pueblos guaraníes de Paraguay y Brasil utilizaban las hojas de ka'a he'ẽ (hierba dulce) para endulzar el mate y como planta medicinal. La llamaban "hierba de la miel" por su extraordinario dulzor natural.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1899 - Descubrimiento Científico</h4>
+                    <p>El botánico suizo Moisés Santiago Bertoni documenta científicamente la planta por primera vez en Paraguay, clasificándola como Stevia rebaudiana. Sus investigaciones revelan el extraordinario poder edulcorante de sus hojas.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1931 - Aislamiento de Compuestos</h4>
+                    <p>Químicos franceses logran aislar los glucósidos de esteviol, identificando el esteviósido y rebaudiósido como los principales responsables del sabor dulce. Se confirma científicamente su potencial como edulcorante.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1970s - Comercialización en Japón</h4>
+                    <p>Japón se convierte en pionero mundial al aprobar y comercializar masivamente la estevia. Grandes corporaciones desarrollan métodos de extracción refinados. Hoy representa el 40% del mercado de edulcorantes japonés.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>2008 - Aprobación FDA</h4>
+                    <p>La FDA de Estados Unidos aprueba los glucósidos de esteviol altamente purificados como GRAS (Generally Recognized as Safe), abriendo el mercado norteamericano y mundial para su uso generalizado.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>2011 - Aprobación en Europa</h4>
+                    <p>La Unión Europea autoriza el uso de glucósidos de esteviol (E960) en alimentos y bebidas. Esto desencadena una revolución en la reformulación de productos para reducir azúcares.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Actualidad - Liderazgo Global</h4>
+                    <p>La estevia es cultivada en más de 50 países y utilizada en miles de productos. China produce el 80% mundial. El mercado global alcanza los $600 millones USD anuales y crece un 8% anual, impulsado por la demanda de productos saludables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Cómo llegó a nosotros -->
+    <section class="seccion">
+        <h2>Cómo Llegó la Estevia a Grupo Ceoquim SRL</h2>
+        <p>En Grupo Ceoquim SRL, nuestra incorporación de la estevia al portafolio comenzó hace 8 años, cuando detectamos la creciente tendencia global hacia endulzantes naturales y la demanda de alternativas saludables al azúcar en la industria boliviana.</p>
+
+        <h3>Nuestro Camino hacia el Endulzante Natural</h3>
+        <p>En 2016, nuestro equipo técnico participó en la FiA (Feria Internacional de Alimentos) en Bogotá, Colombia, donde observamos el explosivo crecimiento de productos endulzados con estevia. Fue evidente que la industria alimentaria global estaba pivotando hacia soluciones más saludables, y Bolivia no podía quedarse atrás.</p>
+
+        <p>Iniciamos una exhaustiva investigación de mercado visitando plantaciones de estevia en Paraguay (el origen histórico de la planta), plantas de procesamiento en Brasil, y centros de investigación en China, que actualmente concentra el 80% de la producción mundial de extractos refinados de estevia.</p>
+
+        <h3>Selección de Nuestro Proveedor</h3>
+        <p>Después de evaluar más de 20 proveedores potenciales en 4 continentes, establecimos una alianza estratégica con una empresa líder en la provincia de Shandong, China, reconocida mundialmente por sus extractos de estevia de alta pureza. Este proveedor cuenta con:</p>
+
+        <ul class="lista-beneficios">
+            <li>Certificación orgánica internacional (USDA Organic, EU Organic)</li>
+            <li>Cumplimiento con estándares JECFA, FDA y EFSA</li>
+            <li>Contenido de rebaudiósido A superior al 97% (RA97)</li>
+            <li>Proceso de extracción libre de solventes químicos nocivos</li>
+            <li>Trazabilidad completa desde la plantación hasta el producto final</li>
+            <li>Certificaciones ISO 9001, HACCP, Kosher y Halal</li>
+        </ul>
+
+        <h3>El Proceso de Importación</h3>
+        <p>Cada embarque de estevia que traemos a Bolivia sigue un riguroso protocolo de calidad:</p>
+
+        <ul class="lista-beneficios">
+            <li>Auditoría inicial de la plantación de origen y verificación de prácticas orgánicas</li>
+            <li>Certificado de análisis que verifica el contenido de rebaudiósido A (RA97 o RA98)</li>
+            <li>Pruebas de ausencia de metales pesados, pesticidas y microorganismos patógenos</li>
+            <li>Transporte marítimo en contenedores con control de temperatura y humedad</li>
+            <li>Inspección aduanera y registro sanitario en Bolivia (SENASAG)</li>
+            <li>Análisis de verificación en laboratorio certificado antes de la distribución</li>
+            <li>Almacenamiento en ambiente controlado que preserva las propiedades organolépticas</li>
+        </ul>
+
+        <h3>Por Qué China para la Estevia</h3>
+        <p>Aunque la planta es originaria de Sudamérica, China se ha convertido en el líder indiscutible en la producción de extractos refinados de estevia:</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🌍 Dominio Global</h4>
+                <p>Produce más del 80% de los extractos de estevia del mundo, con décadas perfeccionando los procesos de extracción y purificación.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🔬 Tecnología de Punta</h4>
+                <p>Métodos de extracción con agua y tecnología de membranas que logran pureza superior al 97% de rebaudiósido A sin residuos químicos.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>✅ Certificaciones Múltiples</h4>
+                <p>Cumplimiento simultáneo con normativas FDA, EFSA, JECFA, además de certificaciones orgánicas internacionales.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>💰 Precio Competitivo</h4>
+                <p>Economías de escala que permiten ofrecer el mejor precio del mercado manteniendo la máxima calidad.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🌱 Sustentabilidad</h4>
+                <p>Cultivos certificados orgánicos con rotación de suelos y prácticas agrícolas sostenibles verificadas.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🤝 Estabilidad de Suministro</h4>
+                <p>Capacidad de producción que garantiza disponibilidad constante durante todo el año.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Propiedades -->
+    <section class="seccion seccion-alt">
+        <h2>Propiedades y Características Técnicas</h2>
+        <p>Nuestro extracto de estevia cumple con las especificaciones técnicas más exigentes del mercado internacional:</p>
+
+        <h3>Características Físicas y Químicas</h3>
+        <ul class="lista-beneficios">
+            <li>Apariencia: Polvo cristalino blanco a blanco cremoso, libre de impurezas</li>
+            <li>Contenido de Rebaudiósido A: Mínimo 97% (RA97) o 98% (RA98)</li>
+            <li>Glucósidos de esteviol totales: Mínimo 95%</li>
+            <li>Pérdida por secado: Máximo 6.0%</li>
+            <li>Cenizas: Máximo 1.0%</li>
+            <li>pH (solución al 1%): 4.5 - 7.0</li>
+            <li>Metales pesados (como Pb): Máximo 1 mg/kg</li>
+            <li>Arsénico: Máximo 1 mg/kg</li>
+            <li>Residuos de pesticidas: Cumple normativa orgánica (no detectables)</li>
+            <li>Metanol: Máximo 200 mg/kg</li>
+        </ul>
+
+        <h3>Propiedades Organolépticas</h3>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>👅 Sabor</h4>
+                <p>Dulzor intenso y limpio, con perfil similar al azúcar. El RA97+ presenta mínimo regusto amargo, ideal para bebidas y lácteos</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>👃 Olor</h4>
+                <p>Prácticamente inodoro, con ligeras notas herbales características que desaparecen al disolverse</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>💧 Solubilidad</h4>
+                <p>Soluble en agua (especialmente en caliente), moderadamente soluble en alcohol etílico</p>
+            </div>
+        </div>
+
+        <h3>Beneficios Nutricionales y para la Salud</h3>
+        <ul class="lista-beneficios">
+            <li>Cero calorías: No aporta energía, ideal para control de peso y productos dietéticos</li>
+            <li>Índice glucémico cero: No afecta los niveles de glucosa en sangre, seguro para diabéticos</li>
+            <li>No cariogénico: No promueve caries dental, aprobado por asociaciones odontológicas</li>
+            <li>Estable térmicamente: Resiste temperaturas de horneado hasta 200°C sin degradación</li>
+            <li>Antioxidantes naturales: Contiene compuestos fenólicos con propiedades antioxidantes</li>
+            <li>Sin OMG: Producto libre de organismos genéticamente modificados</li>
+            <li>Apto para todo público: Embarazadas, niños, diabéticos, celíacos (sin gluten)</li>
+            <li>Aprobado por JECFA, FDA, EFSA con ingesta diaria admisible de 4 mg/kg peso corporal</li>
+        </ul>
+    </section>
+
+    <!-- Sección: Usos -->
+    <section class="seccion">
+        <h2>Aplicaciones y Usos Industriales</h2>
+        <p>La estevia es uno de los edulcorantes más versátiles del mercado, con aplicaciones que abarcan prácticamente toda la industria de alimentos y bebidas.</p>
+
+        <h3>Industria de Bebidas</h3>
+        <p>El sector de bebidas representa el 60% del uso mundial de estevia:</p>
+        <ul class="lista-beneficios">
+            <li>Refrescos y gaseosas: Permite reducir calorías hasta 100%, creando versiones "cero" o "light" sin sacrificar dulzor</li>
+            <li>Bebidas deportivas y energéticas: Endulza sin aportar calorías extras, manteniendo el perfil nutricional deseado</li>
+            <li>Jugos y néctares: Reduce el azúcar añadido permitiendo declaraciones "sin azúcar agregado" o "bajo en calorías"</li>
+            <li>Té y café listos para beber: Perfecta sinergia con sabores naturales, sin interferir con el perfil aromático</li>
+            <li>Bebidas lácteas: Complementa perfectamente yogurt líquido, leches saborizadas, batidos</li>
+            <li>Agua saborizada: Da un toque dulce sutil sin calorías</li>
+            <li>Dosis recomendada: 80-120 mg/L para bebidas carbonatadas, 100-150 mg/L para jugos</li>
+        </ul>
+
+        <h3>Productos Lácteos</h3>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🥛 Yogurts</h4>
+                <p>Yogurts bajos en calorías, versiones "light" con textura cremosa. Típicamente 0.02-0.04% del producto final.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🍦 Helados</h4>
+                <p>Helados reducidos en calorías que mantienen cremosidad. Combina bien con fibras para dar cuerpo. 0.03-0.05%.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🧈 Productos Frescos</h4>
+                <p>Quesos crema, postres refrigerados, flanes. Estable durante la vida útil del producto refrigerado.</p>
+            </div>
+        </div>
+
+        <h3>Panadería y Repostería

@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glutamato Monosódico (Ajinomoto) - Grupo Ceoquim SRL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header/Navegación */
+        header {
+            background: white;
+            padding: 20px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00bcd4 0%, #4db8e8 50%, #a8e063 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00bcd4;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(0,188,212,0.05) 0%, rgba(168,224,99,0.05) 100%);
+            padding: 80px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .hero::before {
+            width: 400px;
+            height: 400px;
+            background: #a8e063;
+            top: -200px;
+            left: -100px;
+        }
+
+        .hero::after {
+            width: 500px;
+            height: 500px;
+            background: #00bcd4;
+            bottom: -250px;
+            right: -150px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .hero h1 .destacado {
+            color: #00bcd4;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .producto-imagen-hero {
+            width: 100%;
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .producto-imagen-hero img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Secciones de Contenido */
+        .seccion {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 50px;
+        }
+
+        .seccion-alt {
+            background: #f8f9fa;
+        }
+
+        .seccion h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .seccion h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #00bcd4, #a8e063);
+            border-radius: 2px;
+        }
+
+        .seccion h3 {
+            font-size: 1.8em;
+            color: #00bcd4;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .seccion p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Grid de características */
+        .caracteristicas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .caracteristica-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .caracteristica-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .caracteristica-card h4 {
+            color: #00bcd4;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caracteristica-card p {
+            color: #666;
+            font-size: 1em;
+        }
+
+        /* Lista con iconos */
+        .lista-beneficios {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .lista-beneficios li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.1em;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lista-beneficios li:last-child {
+            border-bottom: none;
+        }
+
+        .lista-beneficios li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #a8e063;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        /* Etiquetas */
+        .etiquetas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .etiqueta {
+            background: linear-gradient(135deg, #00bcd4, #4db8e8);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #00bcd4, #a8e063);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+            padding-left: 50px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #00bcd4;
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 0;
+            box-shadow: 0 0 0 4px #00bcd4;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content h4 {
+            color: #00bcd4;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #666;
+            font-size: 0.95em;
+            margin: 0;
+            text-align: left;
+        }
+
+        /* Botones CTA */
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #00bcd4;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0097a7;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,188,212,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00bcd4;
+            border: 2px solid #00bcd4;
+        }
+
+        .btn-secondary:hover {
+            background: #00bcd4;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 50px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #bbb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .seccion {
+                padding: 50px 30px;
+            }
+
+            .caracteristicas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 60px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-item::after {
+                left: 10px !important;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+    
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Glutamato Monosódico <span class="destacado">(Ajinomoto)</span></h1>
+            <p>Potenciador de sabor de calidad premium que realza el gusto natural de tus alimentos</p>
+            
+            <div class="producto-imagen-hero">
+                <img src="ajinomoto.jpg">
+            </div>
+
+            <div class="etiquetas">
+                <span class="etiqueta">✓ Grado Alimenticio</span>
+                <span class="etiqueta">✓ Certificado ISO 9001</span>
+                <span class="etiqueta">✓ 25 KG</span>
+                <span class="etiqueta">✓ Importación Directa</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Qué es el Ajinomoto -->
+    <section class="seccion">
+        <h2>¿Qué es el Glutamato Monosódico?</h2>
+        <p>El Glutamato Monosódico (MSG por sus siglas en inglés), comercialmente conocido como Ajinomoto, es un potenciador de sabor revolucionario que ha transformado la industria alimentaria mundial. Este compuesto cristalino blanco es la sal sódica del ácido glutámico, uno de los aminoácidos más abundantes en la naturaleza.</p>
+        
+        <p>Descubierto en 1908 por el químico japonés Kikunae Ikeda, el glutamato monosódico reproduce el sabor "umami", considerado el quinto sabor básico junto al dulce, salado, ácido y amargo. El umami, que en japonés significa "sabor delicioso", es ese sabor profundo y satisfactorio presente naturalmente en alimentos como el queso parmesano, los tomates maduros, las algas y las carnes curadas.</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🧪 Composición</h4>
+                <p>Pureza del 99% - Sal sódica del ácido glutámico con la fórmula química C₅H₈NNaO₄</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🎯 Función Principal</h4>
+                <p>Potenciador del sabor umami que intensifica los sabores naturales de los alimentos</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>⚖️ Presentación</h4>
+                <p>Sacos de 25 kilogramos de polvo cristalino blanco, ideal para uso industrial</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Historia -->
+    <section class="seccion seccion-alt">
+        <h2>La Historia del Ajinomoto</h2>
+        <p>La historia del glutamato monosódico es fascinante y está profundamente ligada a la búsqueda de la excelencia culinaria y la innovación científica.</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1908 - El Descubrimiento</h4>
+                    <p>El profesor Kikunae Ikeda de la Universidad Imperial de Tokio descubre el glutamato monosódico mientras investigaba el sabor distintivo del caldo dashi (caldo japonés tradicional hecho con algas kombu). Ikeda aisló el ácido glutámico de las algas y creó su sal sódica estable.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1909 - Nace Ajinomoto</h4>
+                    <p>El empresario Saburosuke Suzuki II reconoce el potencial comercial del descubrimiento y funda la empresa Ajinomoto Co., Inc. El nombre "Ajinomoto" significa literalmente "esencia del sabor" en japonés. Comienza la producción comercial del primer potenciador de sabor del mundo.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1920s-1950s - Expansión Global</h4>
+                    <p>El glutamato monosódico se extiende por Asia, llegando primero a China, Corea y el sudeste asiático. Durante la Segunda Guerra Mundial, las raciones militares estadounidenses lo incorporan. En la posguerra, su uso se populariza en Occidente, revolucionando la cocina industrial.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1960s-1990s - Desarrollo Científico</h4>
+                    <p>Se realizan múltiples estudios científicos sobre el MSG. En 1987, el Comité Mixto FAO/OMS de Expertos en Aditivos Alimentarios clasifica al glutamato monosódico como seguro para el consumo humano. Se convierte en uno de los aditivos alimentarios más estudiados del mundo.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>2000s - Reconocimiento del Umami</h4>
+                    <p>En 2002, científicos identifican receptores específicos de umami en las papilas gustativas humanas, validando el umami como el quinto sabor básico. El glutamato monosódico es reconocido como el representante puro de este sabor fundamental.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Actualidad - Producción Sostenible</h4>
+                    <p>Hoy en día, el glutamato monosódico se produce mediante fermentación bacteriana de carbohidratos, un proceso similar al usado para hacer yogur o vinagre. La producción mundial supera las 3 millones de toneladas anuales, presente en cocinas de más de 100 países.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Cómo llegó a nosotros -->
+    <section class="seccion">
+        <h2>Cómo Llegó el Ajinomoto a Grupo Ceoquim SRL</h2>
+        <p>En Grupo Ceoquim SRL, nuestra relación con el glutamato monosódico comenzó hace más de 15 años, cuando identificamos la creciente demanda de potenciadores de sabor de calidad en la industria alimentaria boliviana.</p>
+
+        <h3>Nuestro Viaje hacia la Excelencia</h3>
+        <p>Todo comenzó en 2008, cuando nuestro equipo directivo viajó a Asia para establecer contactos con los principales fabricantes de aditivos alimentarios. Durante esa gira, visitamos las instalaciones de producción de Ajinomoto en China, quedando impresionados por sus estrictos controles de calidad y procesos de fabricación de vanguardia.</p>
+
+        <p>Tras meses de negociaciones y verificaciones exhaustivas, establecimos una alianza estratégica con uno de los productores certificados más prestigiosos de China, específicamente con plantas en las provincias de Jiangsu y Shandong, regiones reconocidas mundialmente por su excelencia en la producción de aditivos alimentarios.</p>
+
+        <h3>El Proceso de Importación</h3>
+        <p>Cada lote de glutamato monosódico que importamos sigue un riguroso proceso de control de calidad:</p>
+
+        <ul class="lista-beneficios">
+            <li>Certificación de origen directamente de las plantas productoras certificadas ISO 9001:2015 y HACCP</li>
+            <li>Análisis de laboratorio en origen que verifica pureza mínima del 99%, ausencia de metales pesados y cumplimiento de especificaciones</li>
+            <li>Transporte marítimo en contenedores sellados con control de humedad y temperatura</li>
+            <li>Inspección en puerto boliviano por autoridades sanitarias (SENASAG)</li>
+            <li>Análisis adicional en nuestro laboratorio asociado antes de la distribución</li>
+            <li>Almacenamiento en bodega climatizada que cumple con las normas de inocuidad alimentaria</li>
+        </ul>
+
+        <h3>Por Qué Elegimos Este Proveedor</h3>
+        <p>La selección de nuestro proveedor de glutamato monosódico no fue casual. Tras evaluar múltiples opciones en Asia, Europa y América, elegimos trabajar con productores chinos por las siguientes razones:</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>📊 Liderazgo Mundial</h4>
+                <p>China produce más del 70% del glutamato monosódico mundial, con décadas de experiencia perfeccionando el proceso de fermentación.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🔬 Tecnología Avanzada</h4>
+                <p>Plantas con equipamiento de última generación que garantizan pureza superior al 99% mediante fermentación controlada.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>✅ Certificaciones Internacionales</h4>
+                <p>Cumplimiento con ISO 9001, HACCP, FDA, y certificaciones europeas que aseguran los más altos estándares.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>💰 Competitividad</h4>
+                <p>Economías de escala que nos permiten ofrecer precios competitivos sin sacrificar calidad.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🌱 Producción Sostenible</h4>
+                <p>Proceso de fermentación natural usando melaza de caña de azúcar o tapioca, sin modificación genética.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🤝 Confiabilidad</h4>
+                <p>Más de 15 años de relación comercial sin interrupciones, con entregas puntuales y consistencia en la calidad.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Propiedades -->
+    <section class="seccion seccion-alt">
+        <h2>Propiedades y Características Técnicas</h2>
+        <p>El glutamato monosódico que distribuimos cuenta con especificaciones técnicas que superan los estándares internacionales:</p>
+
+        <h3>Características Físicas y Químicas</h3>
+        <ul class="lista-beneficios">
+            <li>Apariencia: Cristales blancos o polvo cristalino blanco, libre de materias extrañas</li>
+            <li>Pureza: Mínimo 99.0% de glutamato monosódico</li>
+            <li>Pérdida por secado: Máximo 0.5%</li>
+            <li>pH (solución al 5%): 6.7 - 7.2</li>
+            <li>Transmitancia (solución al 5%): Mínimo 98.0%</li>
+            <li>Cloruro (como NaCl): Máximo 0.2%</li>
+            <li>Sulfatos: Máximo 0.05%</li>
+            <li>Hierro: Máximo 5 mg/kg</li>
+            <li>Metales pesados (como Pb): Máximo 1 mg/kg</li>
+            <li>Arsénico: Máximo 0.5 mg/kg</li>
+        </ul>
+
+        <h3>Propiedades Organolépticas</h3>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>👅 Sabor</h4>
+                <p>Sabor umami característico, suave y sabroso, que potencia los sabores naturales sin aportar su propio sabor dominante</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>👃 Olor</h4>
+                <p>Prácticamente inodoro, con un ligero aroma característico cuando está en solución</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>💧 Solubilidad</h4>
+                <p>Altamente soluble en agua (74g/100ml a 25°C), prácticamente insoluble en alcohol y éter</p>
+            </div>
+        </div>
+
+        <h3>Beneficios Nutricionales y Funcionales</h3>
+        <ul class="lista-beneficios">
+            <li>Reduce la necesidad de sal (sodio) hasta en un 40% sin afectar el sabor, ayudando a crear productos más saludables</li>
+            <li>El ácido glutámico es un aminoácido no esencial presente naturalmente en el cuerpo humano y en muchos alimentos</li>
+            <li>Contiene aproximadamente un tercio del sodio presente en la sal de mesa (13% vs 39%)</li>
+            <li>No aporta calorías significativas en las cantidades utilizadas (típicamente 0.1-0.8% del peso del alimento)</li>
+            <li>Estable durante el procesamiento térmico, manteniendo su efectividad incluso a altas temperaturas</li>
+            <li>No enmascara sabores, sino que los realza sinérgicamente, permitiendo percibir mejor los sabores naturales</li>
+            <li>Clasificado como GRAS (Generally Recognized as Safe) por la FDA de Estados Unidos</li>
+        </ul>
+    </section>
+
+    <!-- Sección: Usos -->
+    <section class="seccion">
+        <h2>Aplicaciones y Usos Industriales</h2>
+        <p>El glutamato monosódico es uno de los ingredientes más versátiles en la industria alimentaria. Sus aplicaciones son prácticamente ilimitadas, siendo un componente esencial en la producción de alimentos procesados modernos.</p>
+
+        <h3>Industria Cárnica</h3>
+        <p>En la industria de procesamiento de carnes, el glutamato monosódico es fundamental para:</p>
+        <ul class="lista-beneficios">
+            <li>Embutidos: salchichas, chorizos, mortadelas, jamones. Mejora el sabor cárnico y enmascara sabores no deseados</li>
+            <li>Productos marinados: pollo, cerdo, res. Ayuda a penetrar los sabores y retener jugosidad</li>
+            <li>Hamburguesas y albóndigas: realza el sabor a carne sin aumentar el contenido de grasa o sal</li>
+            <li>Productos curados: prolonga la percepción del sabor y mejora la palatabilidad</li>
+            <li>Dosis recomendada: 0.1% - 0.5% del peso total del producto</li>
+        </ul>
+
+        <h3>Sopas, Caldos y Bases</h3>
+        <p>Es el ingrediente estrella en la producción de:</p>
+        <ul class="lista-beneficios">
+            <li>Cubos de caldo y bouillon: proporciona el sabor umami característico que asociamos con un buen caldo</li>
+            <li>Sopas instantáneas: desde sopas de fideos hasta cremas, es esencial para un sabor completo</li>
+            <li>Bases para cocina: concentrados líquidos o en pasta para uso profesional</li>
+            <li>Consomés y fondos: mejora la profundidad y complejidad del sabor</li>
+            <li>Dosis recomendada: 0.2% - 1.0% del peso total</li>
+        </ul>
+
+        <h3>Snacks y Productos Salados</h3>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🥔 Papas Fritas y Chips</h4>
+                <p>Usado en los sazonadores para crear perfiles de sabor complejos (queso, BBQ, crema y cebolla). Típicamente 0.5-2% del sazonador.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🍿 Palomitas</h4>
+                <p>Componente clave en los sazonadores de mantequilla, queso y otros sabores. Mejora la palatabilidad sin agregar grasas.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🌰 Frutos Secos Sazonados</h4>
+                <p>Realza los sabores naturales de maní, nueces y almendras en presentaciones con diferentes perfiles de sabor.</p>
+            </div>
+        </div>
+
+        <h3>Condimentos y Salsas</h3>
+        <ul class="lista-beneficios">
+            <li>Salsas de tomate y ketchup: redondea el sabor ácido del tomate y añade complejidad</li>
+            <li>Mayonesas y aderezos: equilibra los sabores y permite reducción de sal</li>
+            <li>Salsa de soya, teriyaki y orientales: componente tradicional que define estos sabores</li>
+            <li>Adobos y marinadas: mejora la penetración y fijación de sabores en las carnes</li>
+            <li>Sazonadores en polvo: desde consomé en polvo hasta mezclas de especias complejas</li>
+            <li>Dosis recomendada: 0.5% - 2.0% dependiendo del tipo de salsa</li>
+        </ul>
+
+        <h3>Productos de Panadería Salada</h3>
+        <p>Aunque menos común, el MSG también se utiliza en productos de panadería:</p>
+        <ul class="lista-beneficios">
+            <li>Panes de queso y saborizados: mejora el sabor a queso y otros ingredientes salados</li>
+            <li>Galletas saladas y crackers: proporciona sabor sabroso sin exceso de sal</li>
+            <li>Productos de pastelería salada: tartas, quiches, empanadas</li>
+            <li>Dosis recomendada: 0.1% - 0.3% de la harina utilizada</li>
+        </ul>
+
+        <h3>Industria de Alimentos Preparados</h3>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🍱 Comidas Congeladas</h4>
+                <p>Esencial para mantener el sabor durante el proceso de congelación y recalentamiento. Usado en lasañas, pizzas, platos preparados.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🥫 Alimentos Enlatados</h4>
+                <p>Compensa la pérdida de sabor durante el procesamiento a alta temperatura. Usado en vegetales, sopas, salsas enlatadas.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🍜 Fideos Instantáneos</h4>
+                <p>Componente crítico del sazonador que define el sabor característico de estas preparaciones rápidas.</p>
+            </div>
+        </div>
+
+        <h3>Restauración y Servicios de Alimentos</h3>
+        <p>En el sector HORECA (hoteles, restaurantes, catering):</p>
+        <ul class="lista-beneficios">
+            <li>Cocinas de restaurantes: para realzar platos de arroz, pastas, carnes, sopas</li>
+            <li>Catering industrial: mejora la palatabilidad de grandes volúmenes de comida</li>
+            <li>Fast food: componente en sazonadores especiales de pollo, hamburguesas, papas</li>
+            <li>Cocina asiática: ingrediente tradicional y esencial en la gastronomía china, japonesa, coreana</li>
+        </ul>
+
+        <h3>Dosificación Recomendada por Tipo de Aplicación</h3>
+        <p>Para obtener los mejores resultados, se recomienda seguir estas guías de dosificación:</p>
+        
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>Productos Cárnicos</h4>
+                <p>0.1% - 0.5% del peso total. Agregar durante el mezclado inicial con las especias.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>Sopas y Caldos</h4>
+                <p>0.2% - 1.0% del peso total. Disolver completamente durante la cocción.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>Snacks</h4>
+                <p>0.5% - 2.0% del sazonador. Mezclar uniformemente con otros condimentos.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>Salsas</h4>
+                <p>0.3% - 1.5% del peso total. Agregar después del proceso de cocción para máxima efectividad.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>Aderezos</h4>
+                <p>0.1% - 0.8% del peso total. Disolver en fase acuosa antes de emulsionar.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>Platos Preparados</h4>
+                <p>0.1% - 0.6% del peso total. Ajustar según otros ingredientes con glutamato natural.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Ventajas -->
+    <section class="seccion seccion-alt">
+        <h2>Ventajas de Trabajar con Grupo Ceoquim SRL</h2>
+        <p>Al elegir Grupo Ceoquim SRL como su proveedor de glutamato monosódico, usted obtiene mucho más que un simple producto:</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🏆 Calidad Garantizada</h4>
+                <p>Certificado de análisis con cada lote. Producto que cumple y supera las normas internacionales de pureza y seguridad alimentaria.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>📦 Disponibilidad Inmediata</h4>
+                <p>Stock permanente en nuestras bodegas en La Paz. No espere semanas por su pedido, entregamos en 24-48 horas.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>💼 Asesoría Técnica</h4>
+                <p>Equipo de especialistas en aplicaciones alimentarias para ayudarle a optimizar sus formulaciones y reducir costos.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>📋 Documentación Completa</h4>
+                <p>Certificados sanitarios, fichas técnicas, especificaciones, hojas de seguridad. Todo lo que necesita para su documentación.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>💰 Precios Competitivos</h4>
+                <p>Importación directa sin intermediarios. Descuentos por volumen y condiciones de pago flexibles.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🤝 Compromiso a Largo Plazo</h4>
+                <p>Más de 15 años en el mercado boliviano. Relación comercial basada en confianza y crecimiento mutuo.</p>
+            </div>
+        </div>
+
+        <h3>Nuestro Compromiso con la Calidad</h3>
+        <p>En Grupo Ceoquim SRL, entendemos que nuestros clientes confían en nosotros para mantener la consistencia y calidad de sus productos. Por eso, cada saco de glutamato monosódico que sale de nuestras bodegas ha pasado por:</p>
+        
+        <ul class="lista-beneficios">
+            <li>Verificación de sellos de seguridad y condiciones del empaque</li>
+            <li>Inspección visual del producto</li>
+            <li>Verificación de fechas de producción y vencimiento</li>
+            <li>Confirmación de certificados de análisis del lote</li>
+            <li>Almacenamiento en condiciones controladas (temperatura, humedad, luz)</li>
+            <li>Trazabilidad completa desde el origen hasta la entrega final</li>
+        </ul>
+    </section>
+
+    <!-- Sección: Almacenamiento -->
+    <section class="seccion">
+        <h2>Almacenamiento y Manejo</h2>
+        <p>Para mantener la calidad óptima del glutamato monosódico, es fundamental seguir las recomendaciones de almacenamiento y manejo:</p>
+
+        <h3>Condiciones de Almacenamiento</h3>
+        <ul class="lista-beneficios">
+            <li>Temperatura: Almacenar a temperatura ambiente (15-25°C). Evitar exposición a temperaturas extremas</li>
+            <li>Humedad: Mantener en lugar seco con humedad relativa inferior al 65%. El producto es higroscópico</li>
+            <li>Luz: Proteger de la luz solar directa que puede afectar la coloración</li>
+            <li>Ventilación: Área bien ventilada para evitar acumulación de humedad</li>
+            <li>Separación: Alejar de productos con olores fuertes que puedan absorberse</li>
+            <li>Apilamiento: Máximo 8 sacos de altura en pallets, separados del piso y paredes</li>
+        </ul>
+
+        <h3>Vida Útil y Estabilidad</h3>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>⏰ Vida Útil</h4>
+                <p>36 meses desde la fecha de producción cuando se almacena en condiciones adecuadas en su empaque original sellado.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🔒 Empaque Abierto</h4>
+                <p>Una vez abierto, consumir preferentemente dentro de 12 meses. Resella bien después de cada uso.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>⚠️ Señales de Deterioro</h4>
+                <p>Apelmazamiento, cambio de color, presencia de humedad. Desechar si presenta estas características.</p>
+            </div>
+        </div>
+
+        <h3>Seguridad en el Manejo</h3>
+        <p>Aunque el glutamato monosódico es seguro y de baja toxicidad, se recomienda:</p>
+        <ul class="lista-beneficios">
+            <li>Usar guantes al manipular grandes cantidades para evitar irritación por contacto prolongado</li>
+            <li>Utilizar mascarilla en ambientes con polvo para evitar irritación de vías respiratorias</li>
+            <li>Lavarse las manos después de manipular el producto</li>
+            <li>En caso de contacto con ojos, lavar inmediatamente con abundante agua</li>
+            <li>Mantener fuera del alcance de niños y animales domésticos</li>
+            <li>No consumir directamente en grandes cantidades</li>
+        </ul>
+    </section>
+
+    <!-- Sección: Información Científica -->
+    <section class="seccion seccion-alt">
+        <h2>Información Científica y Seguridad</h2>
+        <p>El glutamato monosódico es uno de los ingredientes alimentarios más extensamente estudiados en la historia de la ciencia de los alimentos.</p>
+
+        <h3>Respaldo Científico</h3>
+        <p>Múltiples organizaciones científicas y regulatorias de prestigio mundial han evaluado la seguridad del glutamato monosódico:</p>
+
+        <ul class="lista-beneficios">
+            <li>FDA (EE.UU.): Clasificado como GRAS (Generally Recognized as Safe) desde 1958</li>
+            <li>JECFA (FAO/OMS): "Ingesta Diaria Admisible no especificada" - la categoría más segura en 1987</li>
+            <li>Unión Europea: Aprobado como aditivo E621 sin limitación de uso en alimentos</li>
+            <li>EFSA: Reafirmó su seguridad en evaluación exhaustiva de 2017</li>
+            <li>Codex Alimentarius: Incluido en la lista de aditivos aceptados internacionalmente</li>
+        </ul>
+
+        <h3>Estudios Científicos Clave</h3>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🔬 Metabolismo</h4>
+                <p>El glutamato del MSG se metaboliza exactamente igual que el glutamato presente naturalmente en alimentos como tomates, quesos y carnes.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🧠 Barrera Hematoencefálica</h4>
+                <p>El glutamato de la dieta no atraviesa la barrera hematoencefálica en cantidades significativas, según estudios de la Universidad de Tokio.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>📊 Estudios Poblacionales</h4>
+                <p>Investigaciones en países con alto consumo de MSG (Japón, China) no muestran efectos adversos en la salud poblacional.</p>
+            </div>
+        </div>
+
+        <h3>Mitos vs. Realidad</h3>
+        <p>A pesar del sólido respaldo científico, existen algunos mitos sobre el glutamato monosódico. Aclaremos los hechos:</p>
+
+        <ul class="lista-beneficios">
+            <li><strong>Mito:</strong> El MSG causa "síndrome del restaurante chino" | <strong>Realidad:</strong> Estudios doble ciego no han demostrado esta relación. Los síntomas reportados son más probables por otros factores</li>
+            <li><strong>Mito:</strong> Es un químico artificial | <strong>Realidad:</strong> Se produce por fermentación natural, igual que el yogurt o la salsa de soya</li>
+            <li><strong>Mito:</strong> Es dañino para el cerebro | <strong>Realidad:</strong> El glutamato dietético no atraviesa la barrera hematoencefálica en cantidades relevantes</li>
+            <li><strong>Mito:</strong> Causa obesidad | <strong>Realidad:</strong> No hay evidencia científica. De hecho, puede ayudar a reducir la sal y crear alimentos más saludables</li>
+            <li><strong>Mito:</strong> Es peligroso para niños | <strong>Realidad:</strong> La leche materna contiene 10 veces más glutamato libre que la leche de vaca</li>
+        </ul>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="seccion">
+        <h2>¿Listo para Potenciar sus Productos?</h2>
+        <p style="text-align: center; font-size: 1.2em; max-width: 800px; margin: 0 auto 40px;">Descubra cómo el glutamato monosódico de Grupo Ceoquim SRL puede transformar sus productos alimenticios. Nuestro equipo está listo para asesorarle en la implementación y optimización de sus formulaciones.</p>
+
+        <div class="cta-buttons">
+            <a href="#contacto" class="btn btn-primary">Solicitar Cotización</a>
+            <a href="#catalogo" class="btn btn-secondary">Ver Catálogo Completo</a>
+        </div>
+
+        <div style="margin-top: 60px; padding: 40px; background: linear-gradient(135deg, rgba(0,188,212,0.1), rgba(168,224,99,0.1)); border-radius: 15px;">
+            <h3 style="text-align: center; color: #00bcd4; margin-bottom: 30px;">Información de Contacto</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center;">
+                <div>
+                    <h4 style="color: #333; margin-bottom: 10px;">📞 Teléfono</h4>
+                    <p style="color: #666; font-size: 1.1em;">+591 2 XXXXXXX</p>
+                </div>
+                <div>
+                    <h4 style="color: #333; margin-bottom: 10px;">📧 Email</h4>
+                    <p style="color: #666; font-size: 1.1em;">ventas@ceoquim.com</p>
+                </div>
+                <div>
+                    <h4 style="color: #333; margin-bottom: 10px;">📍 Dirección</h4>
+                    <p style="color: #666; font-size: 1.1em;">La Paz, Bolivia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Grupo Ceoquim SRL - Soluciones alimenticias para tu industria</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

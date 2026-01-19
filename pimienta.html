@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pimienta Dulce (Pimienta de Jamaica) - Grupo Ceoquim SRL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header/Navegación */
+        header {
+            background: white;
+            padding: 20px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8d6e63 0%, #a1887f 50%, #bcaaa4 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #8d6e63;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(141,110,99,0.05) 0%, rgba(188,170,164,0.05) 100%);
+            padding: 80px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .hero::before {
+            width: 400px;
+            height: 400px;
+            background: #bcaaa4;
+            top: -200px;
+            left: -100px;
+        }
+
+        .hero::after {
+            width: 500px;
+            height: 500px;
+            background: #8d6e63;
+            bottom: -250px;
+            right: -150px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .hero h1 .destacado {
+            color: #8d6e63;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .producto-imagen-hero {
+            width: 100%;
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .producto-imagen-hero img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Secciones de Contenido */
+        .seccion {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 50px;
+        }
+
+        .seccion-alt {
+            background: #f8f9fa;
+        }
+
+        .seccion h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .seccion h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #8d6e63, #bcaaa4);
+            border-radius: 2px;
+        }
+
+        .seccion h3 {
+            font-size: 1.8em;
+            color: #8d6e63;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .seccion p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Grid de características */
+        .caracteristicas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .caracteristica-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .caracteristica-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .caracteristica-card h4 {
+            color: #8d6e63;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caracteristica-card p {
+            color: #666;
+            font-size: 1em;
+        }
+
+        /* Lista con iconos */
+        .lista-beneficios {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .lista-beneficios li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.1em;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lista-beneficios li:last-child {
+            border-bottom: none;
+        }
+
+        .lista-beneficios li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #8d6e63;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        /* Etiquetas */
+        .etiquetas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .etiqueta {
+            background: linear-gradient(135deg, #8d6e63, #a1887f);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #8d6e63, #bcaaa4);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+            padding-left: 50px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #8d6e63;
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 0;
+            box-shadow: 0 0 0 4px #8d6e63;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content h4 {
+            color: #8d6e63;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #666;
+            font-size: 0.95em;
+            margin: 0;
+            text-align: left;
+        }
+
+        /* Botones CTA */
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #8d6e63;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #6d4c41;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(141,110,99,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #8d6e63;
+            border: 2px solid #8d6e63;
+        }
+
+        .btn-secondary:hover {
+            background: #8d6e63;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 50px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #bbb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .seccion {
+                padding: 50px 30px;
+            }
+
+            .caracteristicas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 60px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-item::after {
+                left: 10px !important;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+    
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Pimienta <span class="destacado">Dulce</span></h1>
+            <p>Especia aromática de sabor complejo, conocida como pimienta de Jamaica o allspice, esencial en sopas y guisos</p>
+            
+            <div class="producto-imagen-hero">
+                <img src="https://images.unsplash.com/photo-1599909991540-b427a1c8f01c?w=500&h=500&fit=crop" alt="Pimienta Dulce">
+            </div>
+
+            <div class="etiquetas">
+                <span class="etiqueta">✓ Grado Alimenticio</span>
+                <span class="etiqueta">✓ 100% Natural</span>
+                <span class="etiqueta">✓ 25 KG</span>
+                <span class="etiqueta">✓ Importación Directa</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Qué es la Pimienta Dulce -->
+    <section class="seccion">
+        <h2>¿Qué es la Pimienta Dulce?</h2>
+        <p>La pimienta dulce, científicamente conocida como Pimenta dioica, es una especia aromática única que combina en un solo grano los sabores de clavo, canela, nuez moscada y pimienta negra. Originaria del Caribe y Centroamérica, esta pequeña baya esférica de color marrón oscuro es el fruto inmaduro y seco del árbol de pimienta de Jamaica, perteneciente a la familia Myrtaceae.</p>
+        
+        <p>Conocida internacionalmente como "allspice" (todas las especias) por su perfil aromático complejo, la pimienta dulce ha sido un ingrediente fundamental en la cocina caribeña, mexicana y centroamericana durante siglos. Sus bayas, de aproximadamente 4-7mm de diámetro, contienen aceites esenciales ricos en eugenol, el mismo compuesto aromático presente en el clavo de olor, lo que le confiere su característico aroma cálido y dulce. En Bolivia y gran parte de Sudamérica, es conocida como "pimienta gorda" o "pimienta de Jamaica" y es indispensable en la elaboración de sopas, caldos, escabeches y adobos tradicionales.</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🌳 Origen Botánico</h4>
+                <p>Pimenta dioica - Árbol tropical de 10-18m de altura, cultivado principalmente en Jamaica, Guatemala y México</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🎯 Perfil Aromático</h4>
+                <p>Combina notas de clavo (40%), canela (30%), nuez moscada (20%) y pimienta negra (10%) en un solo grano</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>⚖️ Presentación</h4>
+                <p>Sacos de 25 kilogramos de bayas enteras, secas y limpias, listas para uso industrial o molienda</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Historia -->
+    <section class="seccion seccion-alt">
+        <h2>La Historia de la Pimienta Dulce</h2>
+        <p>La pimienta dulce tiene una rica historia que se entrelaza con las culturas precolombinas del Caribe y el descubrimiento de América.</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Época Precolombina - Uso Maya y Azteca</h4>
+                    <p>Los mayas y aztecas utilizaban la pimienta dulce desde hace más de 3,000 años. La llamaban "xocoxochitl" y la usaban para embalsamar a sus nobles, aromatizar chocolate ceremonial y en preparaciones medicinales. Era considerada una especia sagrada reservada para la nobleza y ceremonias religiosas.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1492 - Encuentro con los Europeos</h4>
+                    <p>Cristóbal Colón se encuentra con la pimienta dulce en Jamaica durante su segundo viaje. Creyendo haber llegado a las Indias Orientales y buscando la valiosa pimienta negra, confundió estas bayas aromáticas con pimienta, de ahí el nombre "pimienta de Jamaica". Los indígenas taínos la llamaban "tabasca".</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Siglo XVI - Llegada a Europa</h4>
+                    <p>Los españoles introducen la pimienta dulce en Europa, donde inicialmente fue rechazada por no ser la codiciada pimienta negra oriental. Sin embargo, los británicos, tras conquistar Jamaica en 1655, descubrieron su valor culinario único y comenzaron a exportarla masivamente a Inglaterra.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Siglo XVII - "Allspice" Británica</h4>
+                    <p>Los británicos acuñaron el nombre "allspice" al descubrir que su sabor combinaba múltiples especias en una sola. Se convirtió en ingrediente esencial de la cocina británica, especialmente en puddings navideños, pasteles de carne y encurtidos. Jamaica se estableció como el principal productor mundial.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Siglo XVIII - Expansión Global</h4>
+                    <p>Los ingleses intentaron cultivar pimienta dulce en otras colonias tropicales (India, Sri Lanka, Indonesia) pero sin éxito comercial. La planta parecía prosperar únicamente en el Caribe y Centroamérica. Jamaica mantuvo su monopolio prácticamente hasta el siglo XX.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Siglo XIX - Llegada a Sudamérica</h4>
+                    <p>La pimienta dulce se populariza en la cocina sudamericana, especialmente en países andinos donde se incorpora a sopas, caldos y escabeches. En Bolivia, se convierte en ingrediente fundamental del "escabeche de pollo" y diversas sopas tradicionales como el chairo y la k'alapurka.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Actualidad - Producción y Comercio</h4>
+                    <p>Jamaica sigue siendo el principal productor mundial (70% de la producción global), seguido por Guatemala y México. La producción anual mundial ronda las 8,000-10,000 toneladas. Se exporta a más de 100 países y es ingrediente esencial en innumerables cocinas regionales, desde el jerk jamaicano hasta el mole mexicano y las sopas bolivianas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Cómo llegó a nosotros -->
+    <section class="seccion">
+        <h2>Cómo Llegó la Pimienta Dulce a Grupo Ceoquim SRL</h2>
+        <p>En Grupo Ceoquim SRL, nuestra relación con la pimienta dulce comenzó hace aproximadamente 10 años, cuando identificamos una demanda creciente de especias de calidad premium en la industria de alimentos preparados y el sector gastronómico boliviano.</p>
+
+        <h3>El Inicio de Nuestra Historia con la Pimienta Dulce</h3>
+        <p>En 2014, varios de nuestros clientes del sector de restauración y fabricantes de caldos y sopas instantáneas nos consultaron sobre la posibilidad de importar pimienta dulce de mejor calidad que la disponible en el mercado local. En ese momento, la pimienta dulce disponible en Bolivia presentaba problemas de uniformidad, presencia de tallos y hojas, y contenido variable de aceites esenciales.</p>
+
+        <p>Iniciamos una investigación del mercado internacional de pimienta dulce, estableciendo contactos con exportadores en Jamaica (el origen premium), Guatemala y México. Tras evaluar muestras de diferentes orígenes y calidades, seleccionamos proveedores que pudieran garantizar bayas enteras, limpias, con alto contenido de aceite esencial (mínimo 3.5%) y tamaño uniforme.</p>
+
+        <h3>Nuestros Proveedores Seleccionados</h3>
+        <p>Trabajamos con fuentes complementarias según calidad y precio:</p>
+
+        <ul class="lista-beneficios">
+            <li>Jamaica: Pimienta dulce premium de las Blue Mountains, considerada la de mayor calidad mundial por su alto contenido de aceite esencial (4-4.5%) y perfil aromático superior</li>
+            <li>Guatemala: Calidad comercial excelente de las regiones de Alta Verapaz y Petén, con buena relación calidad-precio</li>
+            <li>Certificación fitosanitaria que garantiza ausencia de plagas y cumplimiento con normativas internacionales</li>
+            <li>Selección manual que elimina bayas inmaduras, sobre-maduras, tallos, hojas y materias extrañas</li>
+            <li>Secado controlado en ambientes ventilados que preserva el contenido de aceites volátiles</li>
+            <li>Trazabilidad desde la finca hasta el puerto de embarque con documentación completa</li>
+        </ul>
+
+        <h3>El Proceso de Importación</h3>
+        <p>Cada embarque de pimienta dulce pasa por controles rigurosos:</p>
+
+        <ul class="lista-beneficios">
+            <li>Inspección pre-embarque verificando humedad (máximo 12%), limpieza (mínimo 98% de bayas enteras), color y aroma</li>
+            <li>Certificado de origen que autentica la procedencia (Jamaica o Guatemala)</li>
+            <li>Análisis de contenido de aceite esencial mediante destilación por arrastre de vapor (mínimo 3.5%)</li>
+            <li>Fumigación controlada cuando es requerida, usando métodos aprobados para productos orgánicos</li>
+            <li>Transporte marítimo en sacos de yute o polipropileno ventilados que permiten respiración del producto</li>
+            <li>Inspección SENASAG en puerto boliviano con verificación de certificados fitosanitarios</li>
+            <li>Almacenamiento en bodega seca, fresca y ventilada, protegida de luz solar directa</li>
+            <li>Re-análisis sensorial (olor, sabor, apariencia) antes de liberar al mercado</li>
+        </ul>
+
+        <h3>Por Qué Jamaica y Guatemala</h3>
+        <p>Estos orígenes ofrecen la mejor combinación de calidad, tradición y precio:</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🇯🇲 Jamaica - Calidad Premium</h4>
+                <p>Clima y suelos únicos de las montañas jamaicanas producen bayas con 4-4.5% de aceite esencial, el más alto del mundo. Aroma y sabor incomparables, pero precio premium (20-30% más caro).</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🇬🇹 Guatemala - Excelente Relación Calidad-Precio</h4>
+                <p>Segundo productor mundial, ofrece bayas de 3.5-4% de aceite esencial con excelente perfil aromático a precio más competitivo. Ideal para aplicaciones industriales de gran volumen.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🌿 Cultivo Tradicional</h4>
+                <p>Ambos países mantienen prácticas de cultivo semi-silvestre en bosques naturales, sin uso intensivo de agroquímicos, produciendo pimienta casi orgánica de manera natural.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>✅ Tradición Centenaria</h4>
+                <p>Más de 300 años de experiencia en cultivo, cosecha y procesamiento garantizan conocimiento profundo sobre el momento óptimo de cosecha y secado.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🔍 Selección Rigurosa</h4>
+                <p>Procesos de limpieza y clasificación manual que eliminan impurezas y garantizan uniformidad en tamaño y madurez de las bayas.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🤝 Suministro Estable</h4>
+                <p>Relación comercial de más de 10 años con cooperativas de agricultores que garantiza abastecimiento continuo durante todo el año.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Propiedades -->
+    <section class="seccion seccion-alt">
+        <h2>Propiedades y Características Técnicas</h2>
+        <p>Nuestra pimienta dulce cumple con especificaciones de calidad que superan los estándares internacionales:</p>
+
+        <h3>Características Físicas y Químicas</h3>
+        <ul class="lista-beneficios">
+            <li>Apariencia: Bayas esféricas de 4-7mm de diámetro, color marrón oscuro a marrón rojizo</li>
+            <li>Pureza: Mínimo 98% de bayas enteras y limpias, libre de tallos, hojas, polvo y materias extrañas</li>
+            <li>Humedad: Máximo 12% (conservación óptima y prevención de moho)</li>
+            <li>Contenido de aceite esencial: 3.5% - 4.5% dependiendo del origen (Jamaica 4-4.5%, Guatemala 3.5-4%)</li>
+            <li>Componente principal: Eugenol (65-85% del aceite esencial)</li>
+            <li>Otros componentes: Metil eugenol, cineol, felandreno, cariofileno</li>
+            <li>Cenizas totales: Máximo 5%</li>
+            <li>Cenizas insolubles en ácido: Máximo 1% (indica ausencia de tierra/arena)</li>
+            <li>Metales pesados (como Pb): Máximo 2 mg/kg</li>
+            <li>Aflatoxinas: Máximo 5 ppb</li>
+            <li>Recuento microbiológico total: Máximo 10⁵ UFC/g</li>
+        </ul>
+
+        <h3>Propiedades Organolépticas</h3>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>👅 Sabor</h4>
+                <p>Cálido, dulce y picante con notas complejas que recuerdan simultáneamente a clavo, canela, nuez moscada y pimienta negra. Persistente en boca con ligero toque mentolado.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>👃 Aroma</h4>
+                <p>Intensamente aromático y penetrante. Fragancia cálida y especiada que se libera al romper las bayas, con predominio de eugenol similar al clavo de olor.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🔍 Textura</h4>
+                <p>Bayas duras y quebradizas que se rompen fácilmente revelando dos semillas marrones en su interior. Superficie rugosa y ligeramente arrugada.</p>
+            </div>
+        </div>
+
+        <h3>Beneficios Nutricionales y Propiedades</h3>
+        <ul class="lista-beneficios">
+            <li>Rica en antioxidantes naturales (eugenol, quercetina) que combaten radicales libres</li>
+            <li>Propiedades antimicrobianas y antifúngicas naturales que ayudan en la conservación de alimentos</li>
+            <li>Fuente de minerales: potasio, manganeso, hierro, cobre, selenio y magnesio</li>
+            <li>Contiene vitaminas del complejo B (niacina, riboflavina, piridoxina) y vitamina C</li>
+            <li>Propiedades digestivas: estimula la secreción de enzimas digestivas y alivia gases intestinales</li>
+            <li>Efecto analgésico suave por el contenido de eugenol (usado tradicionalmente para dolores dentales)</li>
+            <li>Propiedades antiinflamatorias naturales estudiadas en medicina tradicional</li>
+            <li>Aceite esencial con propiedades aromáticas terapéuticas (aromaterapia)</li>
+        </ul>
+    </section>
+
+    <!-- Sección: Usos -->
+    <section class="seccion">
+        <h2>Aplicaciones y Usos Industriales</h2>
+        <p>La pimienta dulce es una de las especias más versátiles en la industria alimentaria, siendo ingrediente fundamental en sopas, caldos, adobos y marinadas.</p>
+
+        <h3>Industria de Sopas y Caldos</h3>
+        <p>Esta es la aplicación más importante en Bolivia y Sudamérica:</p>
+        <ul class="lista-beneficios">

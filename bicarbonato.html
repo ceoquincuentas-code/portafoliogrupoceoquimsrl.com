@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bicarbonato de Sodio - Grupo Ceoquim SRL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header/Navegación */
+        header {
+            background: white;
+            padding: 20px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2196f3 0%, #64b5f6 50%, #90caf9 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #2196f3;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(33,150,243,0.05) 0%, rgba(144,202,249,0.05) 100%);
+            padding: 80px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .hero::before {
+            width: 400px;
+            height: 400px;
+            background: #90caf9;
+            top: -200px;
+            left: -100px;
+        }
+
+        .hero::after {
+            width: 500px;
+            height: 500px;
+            background: #2196f3;
+            bottom: -250px;
+            right: -150px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .hero h1 .destacado {
+            color: #2196f3;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .producto-imagen-hero {
+            width: 100%;
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .producto-imagen-hero img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Secciones de Contenido */
+        .seccion {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 50px;
+        }
+
+        .seccion-alt {
+            background: #f8f9fa;
+        }
+
+        .seccion h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .seccion h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #2196f3, #90caf9);
+            border-radius: 2px;
+        }
+
+        .seccion h3 {
+            font-size: 1.8em;
+            color: #2196f3;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .seccion p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Grid de características */
+        .caracteristicas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .caracteristica-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .caracteristica-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .caracteristica-card h4 {
+            color: #2196f3;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caracteristica-card p {
+            color: #666;
+            font-size: 1em;
+        }
+
+        /* Lista con iconos */
+        .lista-beneficios {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .lista-beneficios li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.1em;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lista-beneficios li:last-child {
+            border-bottom: none;
+        }
+
+        .lista-beneficios li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2196f3;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        /* Etiquetas */
+        .etiquetas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .etiqueta {
+            background: linear-gradient(135deg, #2196f3, #64b5f6);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #2196f3, #90caf9);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+            padding-left: 50px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #2196f3;
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 0;
+            box-shadow: 0 0 0 4px #2196f3;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content h4 {
+            color: #2196f3;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #666;
+            font-size: 0.95em;
+            margin: 0;
+            text-align: left;
+        }
+
+        /* Botones CTA */
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #2196f3;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(33,150,243,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2196f3;
+            border: 2px solid #2196f3;
+        }
+
+        .btn-secondary:hover {
+            background: #2196f3;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 50px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #bbb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .seccion {
+                padding: 50px 30px;
+            }
+
+            .caracteristicas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 60px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-item::after {
+                left: 10px !important;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+    
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bicarbonato de <span class="destacado">Sodio</span></h1>
+            <p>Compuesto químico versátil de grado alimenticio, esencial en la industria de panificación y múltiples aplicaciones</p>
+            
+            <div class="producto-imagen-hero">
+                <img src="https://images.unsplash.com/photo-1614963366795-7ad80cfa7706?w=500&h=500&fit=crop" alt="Bicarbonato de Sodio">
+            </div>
+
+            <div class="etiquetas">
+                <span class="etiqueta">✓ Grado Alimenticio</span>
+                <span class="etiqueta">✓ Pureza 99%</span>
+                <span class="etiqueta">✓ 25 KG</span>
+                <span class="etiqueta">✓ Certificado USP</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Qué es el Bicarbonato -->
+    <section class="seccion">
+        <h2>¿Qué es el Bicarbonato de Sodio?</h2>
+        <p>El bicarbonato de sodio, químicamente conocido como hidrogenocarbonato de sodio o carbonato ácido de sodio (NaHCO₃), es un compuesto químico blanco cristalino que ha revolucionado la industria alimentaria, farmacéutica y química. Este polvo fino de sabor ligeramente salado y alcalino es uno de los agentes leudantes más importantes en la historia de la panadería y repostería moderna.</p>
+        
+        <p>Descubierto en su forma natural como mineral nahcolita en lagos evaporados, el bicarbonato de sodio hoy se produce sintéticamente mediante el proceso Solvay. Su capacidad única de liberar dióxido de carbono cuando se calienta o se combina con ácidos lo convierte en un ingrediente indispensable para dar volumen y textura a productos horneados. Más allá de la cocina, el bicarbonato de sodio tiene aplicaciones en farmacia, limpieza industrial, tratamiento de aguas y control de pH, siendo uno de los compuestos más versátiles y seguros de la química industrial.</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🧪 Fórmula Química</h4>
+                <p>NaHCO₃ - Polvo cristalino blanco con pureza mínima del 99%, grado alimenticio certificado USP/FCC</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🎯 Función Principal</h4>
+                <p>Agente leudante que libera CO₂ al calentarse o reaccionar con ácidos, creando estructura aireada en productos horneados</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>⚖️ Presentación</h4>
+                <p>Sacos de 25 kilogramos de polvo fino y uniforme, ideal para uso industrial y producción a gran escala</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Historia -->
+    <section class="seccion seccion-alt">
+        <h2>La Historia del Bicarbonato de Sodio</h2>
+        <p>La historia del bicarbonato de sodio es un fascinante viaje desde los lagos salados del antiguo Egipto hasta los laboratorios químicos modernos y las cocinas de todo el mundo.</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Antiguo Egipto - Natrón Natural</h4>
+                    <p>Los egipcios extraían natrón, una mezcla natural de carbonatos de sodio, de lechos de lagos evaporados como el Wadi El Natrun. Lo usaban en la momificación, limpieza y fabricación de vidrio. Aunque no era bicarbonato puro, contenía este compuesto mezclado con carbonato de sodio.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1791 - Descubrimiento Científico</h4>
+                    <p>El químico francés Nicolas Leblanc desarrolló un proceso para producir carbonato de sodio sintético, sentando las bases para la producción industrial de compuestos de sodio. Este fue el primer paso hacia la síntesis moderna del bicarbonato.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1846 - Primer Uso en Panadería</h4>
+                    <p>John Dwight y Austin Church en Estados Unidos comenzaron a fabricar bicarbonato de sodio purificado específicamente para uso culinario. Fundaron la empresa Church & Co., que revolucionó la panadería casera estadounidense al ofrecer un leudante confiable y económico.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1863 - Proceso Solvay</h4>
+                    <p>El químico belga Ernest Solvay patentó un proceso revolucionario para producir carbonato de sodio a partir de sal común y piedra caliza. Este proceso, conocido como proceso Solvay o proceso de amoníaco-soda, produce bicarbonato de sodio como intermediario, abaratando dramáticamente su producción.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1920s - Expansión Industrial</h4>
+                    <p>El bicarbonato de sodio se convierte en ingrediente estándar en la industria panadera mundial. La empresa Arm & Hammer lo populariza como producto multipropósito para cocina, limpieza y cuidado personal. Comienza a usarse en productos farmacéuticos como antiácido.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>1950s-1970s - Nuevas Aplicaciones</h4>
+                    <p>Se descubren y desarrollan aplicaciones industriales más allá de la alimentación: tratamiento de aguas residuales, control de emisiones en chimeneas, extinción de incendios, agricultura. La producción mundial se multiplica exponencialmente.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Actualidad - Producción Global</h4>
+                    <p>La producción mundial de bicarbonato de sodio supera los 2 millones de toneladas anuales. China, Estados Unidos y Europa son los principales productores. Se utiliza en más de 100 aplicaciones diferentes, desde alimentos hasta hemodiálisis médica. Es considerado uno de los químicos más seguros y versátiles de la industria.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Cómo llegó a nosotros -->
+    <section class="seccion">
+        <h2>Cómo Llegó el Bicarbonato a Grupo Ceoquim SRL</h2>
+        <p>En Grupo Ceoquim SRL, nuestra incorporación del bicarbonato de sodio al portafolio se remonta a nuestros inicios hace más de 20 años. Como uno de los insumos más demandados en la industria alimentaria boliviana, fue naturalmente uno de nuestros primeros productos.</p>
+
+        <h3>Nuestros Inicios con el Bicarbonato</h3>
+        <p>En 2003, cuando fundamos Grupo Ceoquim SRL, identificamos que las panaderías, pastelerías e industrias alimentarias de La Paz enfrentaban dos problemas recurrentes: abastecimiento irregular y calidad inconsistente del bicarbonato de sodio. Muchos proveedores ofrecían producto industrial o técnico que no cumplía con los estándares de pureza para uso alimentario.</p>
+
+        <p>Decidimos desde el principio importar únicamente bicarbonato de sodio grado alimenticio certificado USP (United States Pharmacopeia) y FCC (Food Chemicals Codex), con pureza mínima del 99%. Esto nos posicionó rápidamente como proveedor preferido de las principales panaderías industriales y fabricantes de alimentos de Bolivia.</p>
+
+        <h3>Selección de Proveedores</h3>
+        <p>Trabajamos con productores líderes mundiales ubicados en:</p>
+
+        <ul class="lista-beneficios">
+            <li>China: Provincia de Henan, hogar de los mayores productores mundiales que utilizan el proceso Solvay modificado con tecnología de punta</li>
+            <li>Certificación de cada lote: USP/FCC para grado alimenticio, con análisis completo de pureza, metales pesados y cloruros</li>
+            <li>Proceso de fabricación monitoreado con ISO 9001:2015, HACCP y GMP (Buenas Prácticas de Manufactura)</li>
+            <li>Control de tamaño de partícula uniforme (malla 100-120) para disolución consistente</li>
+            <li>Embalaje en sacos de papel multicapa con liner de polietileno que protege de humedad</li>
+            <li>Análisis de estabilidad que garantiza vida útil de 36 meses en condiciones adecuadas</li>
+        </ul>
+
+        <h3>El Proceso de Importación</h3>
+        <p>Cada embarque de bicarbonato de sodio sigue controles rigurosos:</p>
+
+        <ul class="lista-beneficios">
+            <li>Certificado de análisis del fabricante verificando pureza ≥99%, alcalinidad total, cloruros, arsénico, metales pesados</li>
+            <li>Certificado de origen y declaración de conformidad con normativas alimentarias internacionales</li>
+            <li>Inspección pre-embarque que verifica empaque sellado, ausencia de humedad y contaminación cruzada</li>
+            <li>Transporte marítimo en contenedores secos con desecante para control de humedad</li>
+            <li>Registro sanitario vigente en Bolivia (SENASAG) específico para grado alimenticio</li>
+            <li>Muestreo y análisis en laboratorio certificado local antes de liberar el producto al mercado</li>
+            <li>Almacenamiento en bodega climatizada con humedad relativa controlada <60%</li>
+        </ul>
+
+        <h3>Por Qué China para el Bicarbonato</h3>
+        <p>China produce más del 50% del bicarbonato de sodio mundial, ofreciendo ventajas competitivas significativas:</p>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>🏭 Capacidad Industrial</h4>
+                <p>Plantas con capacidad de producción de 300,000+ toneladas anuales utilizando proceso Solvay optimizado con recuperación de amoníaco >98%.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🔬 Control de Calidad</h4>
+                <p>Laboratorios equipados con espectrometría de absorción atómica, cromatografía iónica y análisis granulométrico láser que garantizan especificaciones exactas.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>✅ Certificaciones Múltiples</h4>
+                <p>Cumplimiento simultáneo con USP, FCC, BP (British Pharmacopoeia), EP (European Pharmacopoeia), ISO, HACCP, Kosher y Halal.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>💰 Precio Competitivo</h4>
+                <p>Economías de escala y producción eficiente permiten ofrecer el mejor precio del mercado boliviano sin comprometer calidad.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>🌱 Proceso Limpio</h4>
+                <p>Tecnología de producción con reciclaje de amoníaco, recuperación de CO₂ y tratamiento de efluentes que cumple normativas ambientales estrictas.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>📦 Suministro Estable</h4>
+                <p>Más de 20 años de relación comercial con el mismo grupo de fabricantes garantiza disponibilidad continua 365 días al año.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Propiedades -->
+    <section class="seccion seccion-alt">
+        <h2>Propiedades y Características Técnicas</h2>
+        <p>Nuestro bicarbonato de sodio cumple con las especificaciones más exigentes de las farmacopeas internacionales:</p>
+
+        <h3>Características Físicas y Químicas</h3>
+        <ul class="lista-beneficios">
+            <li>Apariencia: Polvo cristalino blanco, fino, libre de grumos y materias extrañas</li>
+            <li>Pureza (NaHCO₃): Mínimo 99.0% - 100.5% (base anhidra)</li>
+            <li>Alcalinidad total (como Na₂CO₃): Máximo 0.35%</li>
+            <li>Cloruros (como NaCl): Máximo 0.05%</li>
+            <li>Sulfatos (como SO₄): Máximo 0.05%</li>
+            <li>Calcio (Ca): Máximo 0.01%</li>
+            <li>Hierro (Fe): Máximo 5 mg/kg</li>
+            <li>Metales pesados (como Pb): Máximo 5 mg/kg</li>
+            <li>Arsénico (As): Máximo 1 mg/kg</li>
+            <li>pH (solución al 1%): 8.0 - 8.6</li>
+            <li>Pérdida por calentamiento a 270°C: 0.25% máximo</li>
+            <li>Tamaño de partícula: 90% pasa malla 100 (149 micrones)</li>
+        </ul>
+
+        <h3>Propiedades Organolépticas y Funcionales</h3>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <h4>👅 Sabor</h4>
+                <p>Sabor ligeramente salado y alcalino, sin amargor. Deja una sensación refrescante y ligeramente efervescente en la boca cuando se combina con ácidos.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>👃 Olor</h4>
+                <p>Completamente inodoro en condiciones normales. No absorbe ni emite olores cuando se almacena adecuadamente.</p>
+            </div>
+            <div class="caracteristica-card">
+                <h4>💧 Solubilidad</h4>
+                <p>Soluble en agua (96 g/L a 20°C), prácticamente insoluble en alcohol etílico. La solubilidad aumenta con la temperatura.</p>
+            </div>
+        </div>
+
+        <h3>Propiedades de Reacción y Descomposición</h3>
+        <ul class="lista-beneficios">
+            <li>Comienza a descomponerse a 50°C liberando CO₂ lentamente, acelerándose significativamente sobre 100°C</li>
+            <li>Reacciona con ácidos (ácido acético, cítrico, tartárico) liberando CO₂ instantáneamente: NaHCO₃ + H⁺ → Na⁺ + H₂O + CO₂↑</li>
+            <li>Al calentarse a 200-250°C se transforma completamente en carbonato de sodio (Na₂CO₃) + agua + CO₂</li>
+            <li>Actúa como buffer (tampón) manteniendo pH entre 8-8.6 en soluciones acuosas</li>
+            <li>Neutraliza ácidos en proporción estequiométrica: 84g de NaHCO₃ neutralizan 60g de ácido acético</li>
+            <li>No es higroscópico pero puede absorber humedad en ambientes muy húmedos (>70% HR) formando terrones</li>
+        </ul>
+
+        <h3>Beneficios y Aplicaciones en Alimentos</h3>
+        <ul class="lista-beneficios">
+            <li>Agente leudante de acción rápida que no requiere fermentación, ideal para productos de repostería</li>
+            <li>Mejora la textura creando estructura aireada y esponjosa en panes, tortas, galletas</li>
+            <li>Acelera el ablandamiento de legumbres reduciendo tiempo de cocción hasta en 50%</li>
+            <li>Neutraliza exceso de acidez en salsas de tomate, frutas ácidas y productos lácteos</li>
+            <li>Clasificado como GRAS (Generally Recognized as Safe) por la FDA sin límites de uso</li>
+            <li>No deja sabor residual cuando se usa en proporciones correctas (0.5-2% del peso de harina)</li>
+        </ul>
+    </section>
+
+    <!-- Sección: Usos -->
+    <section class="seccion">
+        <h2>Aplicaciones y Usos Industriales</h2>
+        <p>El bicarbonato de sodio es uno de los ingredientes más versátiles en la industria alimentaria, con aplicaciones que van desde panificación hasta procesamiento de bebidas y carnes.</p>
+
+        <h3>Industria de Panificación y Repostería</h3>
+        <p>Esta es la aplicación más importante del bicarbonato, representando el 60%
